@@ -3,99 +3,190 @@
         <div class="container-fluid">
             <div class="row head-page">
                 <div class="col-lg-12">
-                    <h1 class="page-header">{{msg}}</h1>
-                  <data-table :comments="filteredComments"></data-table>
+                    <h1 class="page-header">SMS Report</h1>
+
+                    <div class="alert alert-success" v-for="val in success">
+                        {{ val }}
+                    </div>
+                    <vuetable ref="vuetable"
+                              v-bind:api-url="APIUrl + '/sms'"
+                              v-bind:fields="fields"
+                              pagination-path=""
+                              v-bind:css="css.table"
+                              v-bind:sort-order="sortOrder"
+                              v-bind:multi-sort="true"
+                              v-bind:http-options = "options"
+                              @vuetable:pagination-data="onPaginationData">
+
+                    </vuetable>
+                    <vuetable-pagination ref="pagination"
+                                         :css="css.paginations"
+                                         @vuetable-pagination:change-page="onChangePage">
+                    </vuetable-pagination>
                 </div>
             </div>
         </div>
+        <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-danger" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title">Delete {{ deleteInfo.name }} ?</h4>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <p>Are you sure to delete : {{ deleteInfo.name }} ?</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-danger" v-on:click.prevent="deleteUser">Delete</button>
+                    </div>
+                </div>
+                <!-- /.modal-content -->
+            </div>
+            <!-- /.modal-dialog -->
+        </div>
     </div>
 </template>
-
 <script>
-  import axios from 'axios'
-  import Vue from 'vue'
+    import Vuetable from 'vuetable-2/src/components/Vuetable';
+    import VuetablePagination from 'vuetable-2/src/components/VuetablePagination';
 
-  Vue.component('data-table', {
-    render: function (createElement) {
-      return createElement(
-        "table", null, []
-      )
-    },
-    props: ['comments'],
-    data() {
-      return {
-        headers: [
-          { title: 'name' },
-          { title: 'email' },
-          { title: 'Body' },
-        ],
-        rows: [] ,
-        dtHandle: null,
-        comments: [],
-        search: ''
-      }
-    },
-    watch: {
-      comments(val, oldVal) {
-        let vm = this;
-        vm.rows = [];
-        val.forEach(function (item) {
-          let row = [];
-          row.push(item.name);
-          row.push(item.email);
-          row.push(item.body);
-          vm.rows.push(row);
-        });
-        vm.dtHandle.clear();
-        vm.dtHandle.rows.add(vm.rows);
-        vm.dtHandle.draw();
-      }
-    },
-//    export default {
-//      name: 'sms',
-//      methods: {
-//        getItem(){
-//          axios.defaults.headers.common['token'] = this.$session.get('token');
-//          axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded';
-//          axios.get('http://localhost:8081/sms')
-//            .then(
-//              response => {
-//                this.results = response.data.sms
-//              },
-//            )
-//        }
-//      },
-    mounted() {
-      let vm = this;
-      vm.dtHandle = $(this.$el).DataTable({
-        columns: vm.headers,
-        data: vm.rows,
-        searching: true,
-        paging: true,
-        info: false
-      });
-      $.ajax({
-        url: 'https://jsonplaceholder.typicode.com/comments',
-        success(res) {
-          vm.comments = res;
+    export default {
+        created() {
+            this.success = JSON.parse(
+                window.localStorage.getItem('success')
+            );
+
+            window.localStorage.removeItem('success');
+        },
+        components: {
+            Vuetable,
+            VuetablePagination
+        },
+        data: function() {
+            return {
+                success: [],
+                deleteInfo: [],
+                options: {
+                    headers: {
+                        Authorization: 'Bearer ' + window.localStorage.getItem('default_auth_token')
+                    }
+                },
+                fields: [{
+                    name: 'id',
+                    sortField: 'id',
+                    title: "ID"
+                },{
+                    name: 'received',
+                    sortField: 'received',
+                    title: 'Received'
+                },{
+                    name: 'amount',
+                    sortField: 'amount',
+                    title: 'Amount'
+                },{
+                    name: 'receiver',
+                    sortField: 'receiver',
+                    title: 'Receiver'
+                },{
+                    name: 'sdn',
+                    sortField: 'sdn',
+                    title: 'Sdn'
+                }],
+                css: {
+                    table: {
+                        tableClass: 'table table-bordered table-striped table-hover',
+                        ascendingIcon: 'fa fa-angle-up',
+                        descendingIcon: 'fa fa-angle-down',
+                        th: 'sms',
+                    },
+                    paginations: {
+                        wrapperClass: 'paginations',
+                        activeClass: 'active',
+                        disabledClass: 'disabled',
+                        pageClass: 'page-item',
+                        linkClass: 'link',
+                        icons: {
+                            first: '',
+                            prev: '',
+                            next: '',
+                            last: '',
+                        },
+                    },
+                    icons: {
+                        first: 'glyphicon glyphicon-step-backward',
+                        prev: 'glyphicon glyphicon-chevron-left',
+                        next: 'glyphicon glyphicon-chevron-right',
+                        last: 'glyphicon glyphicon-step-forward',
+                    }
+                },
+                sortOrder: [{
+                    field: 'id',
+                    sortField: 'id',
+                    direction: 'asc'
+                }
+                ],
+                moreParams: {}
+            };
+        },
+        methods: {
+            onPaginationData (paginationData) {
+                this.$refs.pagination.setPaginationData(paginationData)
+                // this.$refs.paginationInfo.setPaginationData(paginationData)
+            },
+            onChangePage (page) {
+                this.$refs.vuetable.changePage(page)
+            },
+            showRow(rowData){
+                let id = rowData.id;
+                this.$router.push({name: 'show.user', params: {id}})
+            },
+            editRow(rowData) {
+                let id = rowData.id;
+                this.$router.push({name: 'edit.user', params: {id}})
+            },
+            deleteRow(rowData){
+                this.deleteInfo = rowData;
+            },
+            deleteUser() {
+                this.$http.delete(apiUrl() + '/user/' + this.deleteInfo.id)
+                    .then(function(res){
+                        window.localStorage.setItem('success', JSON.stringify([
+                            'User telah dihapus'
+                        ]));
+                        window.location.assign(window.location.href);
+                    })
+                    .catch(function(res){
+
+                    });
+            }
         }
-      });
     }
-  });
-
-//    methods: {
-//        getItem(){
-//          axios.defaults.headers.common['token'] = this.$session.get('token');
-//          axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded';
-//          axios.get('http://localhost:8081/sms')
-//            .then(
-//              response => {
-//                this.results = response.data.sms
-//              },
-//            )
-//        }
-//      },
-//    mounted(){
-//      this.getItem()
-//    }
 </script>
+<style type="text/css">
+    .paginations {
+        display: inline-block;
+        float: right;
+        margin: 20px 0;
+        border-radius: 4px;
+    }
+    .paginations > a {
+        border: 1px solid #eee;
+        padding: 13px;
+        display: inline-block;
+        cursor: pointer;
+    }
+    .paginations > a:hover,
+    .paginations .active {
+        background: #eee;
+    }
+    /*.paginations .disabled {*/
+        /*pointer-events: none;*/
+        /*cursor: disabled;*/
+    /*}*/
+    .sms > th {
+        background-color: #ffffff;
+    }
+</style>

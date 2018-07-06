@@ -14,29 +14,25 @@ export default {
               <li>
                 <h3 class="maen"> MAIN</h3>
               </li>
-                <li><router-link to="/" exact> <i class="fa fa-desktop fa-fw"></i>&nbsp;&nbsp; Dashboard </router-link></li>
+                <li><router-link to="/" exact> <i class="fa fa-desktop fa-fw"></i>&nbsp;&nbsp; Profil </router-link></li>
                 <li><router-link to="/sms"> <i class="fa fa-list-alt fa-fw"></i>&nbsp;&nbsp; SMS Report </router-link></li>
-              <li><router-link to="/user"> <i class="fa fa-list-alt fa-fw"></i>&nbsp;&nbsp; Data User </router-link></li>
+                <li><router-link to="/user"> <i class="fa fa-list-alt fa-fw"></i>&nbsp;&nbsp; Data User </router-link></li>
+                <!--<li><router-link to="/logout"> <i class="fa fa-sign-out fa-fw"></i>&nbsp;&nbsp; Logout </router-link></li>-->
               <li><a href="javascript:void(0)" v-on:click="logout"> <i class="fa fa-lock fa-fw"></i>&nbsp;&nbsp; Logout</a></li>
             </ul>
         </div>
     </div>
 </template>
-
 <script>
-  import axios from 'axios'
-  export default {
-    methods: {
-      logout() {
-        this.$session.destroy();
-        axios({
-          method: 'get',
-          url: 'http://localhost:8081/logout'
-        })
-        this.$router.push('/login');
-
-        console.log(this.$session.get('token'));
-      }
+    import axios from 'axios'
+    export default {
+        methods: {
+            logout() {
+                this.$auth.logout({
+                    makeRequest: true,
+                    redirect: '/login',
+                });
+            }
+        }
     }
-  }
 </script>

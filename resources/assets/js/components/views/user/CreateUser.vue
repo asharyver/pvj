@@ -1,57 +1,70 @@
 <template>
-    <main class="main">
-    <headful v-bind:title="'Create new - ' + appName" description="User" />
-    <div class="container-fluid">
-        <div class="animated fadeIn">
-            <div class="row">
-                <div class="col-sm-12">
-                    <div class="card">
-                        <div class="card-body">
-                            <div class="alert alert-danger" v-for="(error) in errors">
-                                {{ error }}
+    <div id="page-wrapper">
+        <div class="container-fluid">
+            <div class="row head-page">
+                <div class="col-lg-12">
+                    <h1 class="page-header">Input Data User</h1>
+                    <!--<form v-bind:action="currentUrl" method="POST" v-on:submit.prevent="save">-->
+                    <form @submit.prevent="create">
+                        <div class="col-md-6 col-sm-6 body-form">
+                            <div class="alert alert-danger" v-if="errors" v-for="error in errors">
+                                <p>{{ error }}</p>
                             </div>
-                            <form v-bind:action="currentUrl" method="POST" v-on:submit.prevent="create">
-                                <div class="form-group">
-                                    <label for="username">Username</label>
-                                    <input type="text" id="username" name="username" class="form-control" placeholder="Input Username" v-model="username" />
-                                </div>
-                                <div class="form-group">
-                                    <label for="email">Email</label>
-                                    <input type="email" id="email" name="email" class="form-control" placeholder="Email" v-model="email" />
-                                </div>
-                                <div class="form-group">
-                                    <label for="pass">Password</label>
-                                    <input type="password" id="pass" name="pass" class="form-control" placeholder="Password" v-model="pass" />
-                                </div>
-                                <div class="form-group">
-                                    <button class="btn btn-success" v-bind:disabled="loading == true">Simpan</button>
-                                    <div id="fountainG" v-if="loading">
-                                        <div id="fountainG_1" class="fountainG"></div>
-                                        <div id="fountainG_2" class="fountainG"></div>
-                                        <div id="fountainG_3" class="fountainG"></div>
-                                        <div id="fountainG_4" class="fountainG"></div>
-                                        <div id="fountainG_5" class="fountainG"></div>
-                                        <div id="fountainG_6" class="fountainG"></div>
-                                        <div id="fountainG_7" class="fountainG"></div>
-                                        <div id="fountainG_8" class="fountainG"></div>
-                                    </div>
-                                </div>
-                            </form>
+                            <div class="form-group">
+                                <div class="labels" for="name">Name</div>
+                                <input type="text" id="name" name="name" class="form-control" placeholder="Input Name" v-model="name" />
+                            </div>
+                            <div class="form-group">
+                                <div class="labels" for="email">Email</div>
+                                <input type="email" id="email" name="email" class="form-control" placeholder="Input Email Valid" v-model="email" />
+                            </div>
+                            <div class="form-group">
+                                <div class="labels" for="telepon">No Handphone</div>
+                                <input type="number" id="telepon" name="telepon" class="form-control" placeholder="Input No Handphone Valid" v-model="telepon" />
+                            </div>
+                            <div class="form-group">
+                                <div class="labels" for="password">Password</div>
+                                <input type="password" id="password" name="password" class="form-control" placeholder="Input Password" v-model="password" />
+                            </div>
+                            <div class="form-group">
+                                <div class="labels" for="level">Level</div>
+                                <select name="level" id="level" class="form-control" v-model="level">
+                                    <option value="">-- Pilih Level --</option>
+                                    <option value="admin"> Admin</option>
+                                    <option value="staff"> Staff</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <div class="labels" for="nm_merchant">Nama Merchant</div>
+                                <input type="text" id="nm_merchant" name="nm_merchant" class="form-control" placeholder="Input Nama" v-model="nm_merchant" />
+                            </div>
+                            <div class="form-group">
+                                <div class="labels" for="nm_merchant">Logo Merchant</div>
+                                <input type="text" id="logo" name="logo" class="form-control" placeholder="Input link logo" v-model="logo" />
+                            </div>
+                            <div class="form-group">
+                                <router-link v-bind:to=" { name: 'user' } " class="btn btn-danger">Back</router-link>&nbsp;
+                                <!--<button class="btn btn-success" v-bind:disabled="loading == true">Save</button>-->
+                                <button type="submit" class="btn btn-success"> Save</button>
+                            </div>
                         </div>
-                    </div>
+                    </form>
                 </div>
             </div>
         </div>
     </div>
-</main>
 </template>
 <script>
     export default {
         data: function() {
             return {
-                username: null,
+                name: null,
                 email: null,
-                pass: null,
+                telepon: null,
+                password: null,
+                level: null,
+                nm_merchant: null,
+                logo: null,
                 errors: [],
                 loading: false
             }
@@ -59,6 +72,37 @@
 
         methods: {
             create() {
+                this.errors = [];
+                if (this.name == null) {
+                    this.errors.push('Nama pengguna dibutuhkan !');
+                    document.getElementById('name').focus();
+                    return false;
+                } else if (this.email == null) {
+                    this.errors.push('Email pengguna dibutuhkan !');
+                    document.getElementById('email').focus();
+                    return false;
+                } else if (this.telepon == null) {
+                    this.errors.push('No Handphone dibutuhkan !');
+                    document.getElementById('telepon').focus();
+                    return false;
+                } else if (this.password == null) {
+                    this.errors.push('Password dibutuhkan !');
+                    document.getElementById('password').focus();
+                    return false;
+                } else if (this.level == null) {
+                    this.errors.push('Level belum di pilih !');
+                    document.getElementById('level').focus();
+                    return false;
+                } else if (this.nm_merchant == null) {
+                    this.errors.push('Nama Merchant dibutuhkan !');
+                    document.getElementById('nm_merchant').focus();
+                    return false;
+                } else if (this.logo == null) {
+                    this.errors.push('Logo dibutuhkan !');
+                    document.getElementById('logo').focus();
+                    return false;
+                }
+
                 if (this.loading) {
                     return false;
                 }
@@ -67,9 +111,13 @@
                 app.loading = true;
                 app.errors = null;
                 this.$http.post(apiUrl() + '/user', {
-                    username: app.username,
+                    name: app.name,
                     email: app.email,
-                    password: app.pass
+                    telepon: app.telepon,
+                    password: app.pass,
+                    level: app.level,
+                    nm_merchant: app.nm_merchant,
+                    logo: app.logo
                 }).then(function(res){
                     app.loading = false;
                     window.localStorage.setItem('success', JSON.stringify([

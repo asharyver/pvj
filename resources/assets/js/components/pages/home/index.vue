@@ -1,119 +1,61 @@
 <template>
-    <div id="page-wrapper">
-        <div class="container-fluid">
-            <div class="row head-page">
-                <div class="col-lg-12">
-                  <h1 class="page-header">SMS Report</h1>
-                  <div class="col-lg-3 col-md-6">
-                    <div class="panel panel-primary">
-                      <div class="panel-heading">
-                        <div class="row">
-                          <div class="col-xs-3">
-                            <i class="fa fa-comments fa-5x"></i>
-                          </div>
-                          <div class="col-xs-9 text-right">
-                            <div class="huge">17</div>
-                            <div>Data User</div>
-                          </div>
-                        </div>
-                      </div>
-                      <a href="#">
-                        <div class="panel-footer">
-                          <span class="pull-left">View Details</span>
-                          <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
-                          <div class="clearfix"></div>
-                        </div>
-                      </a>
-                    </div>
-                  </div>
-                  <div class="col-lg-3 col-md-6">
-                    <div class="panel panel-green">
-                      <div class="panel-heading">
-                        <div class="row">
-                          <div class="col-xs-3">
-                            <i class="fa fa-tasks fa-5x"></i>
-                          </div>
-                          <div class="col-xs-9 text-right">
-                            <div class="huge">19</div>
-                            <div>Data Merchant</div>
-                          </div>
-                        </div>
-                      </div>
-                      <a href="#">
-                        <div class="panel-footer">
-                          <span class="pull-left">View Details</span>
-                          <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
-                          <div class="clearfix"></div>
-                        </div>
-                      </a>
-                    </div>
-                  </div>
-                  <div class="col-lg-3 col-md-6">
-                    <div class="panel panel-yellow">
-                      <div class="panel-heading">
-                        <div class="row">
-                          <div class="col-xs-3">
-                            <i class="fa fa-shopping-cart fa-5x"></i>
-                          </div>
-                          <div class="col-xs-9 text-right">
-                            <div class="huge">21</div>
-                            <div>Data Customer</div>
-                          </div>
-                        </div>
-                      </div>
-                      <a href="#">
-                        <div class="panel-footer">
-                          <span class="pull-left">View Details</span>
-                          <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
-                          <div class="clearfix"></div>
-                        </div>
-                      </a>
-                    </div>
-                  </div>
-                  <div class="col-lg-3 col-md-6">
-                    <div class="panel panel-red">
-                      <div class="panel-heading">
-                        <div class="row">
-                          <div class="col-xs-3">
-                            <i class="fa fa-support fa-5x"></i>
-                          </div>
-                          <div class="col-xs-9 text-right">
-                            <div class="huge">22</div>
-                            <div>Data </div>
-                          </div>
-                        </div>
-                      </div>
-                      <a href="#">
-                        <div class="panel-footer">
-                          <span class="pull-left">View Details</span>
-                          <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
-                          <div class="clearfix"></div>
-                        </div>
-                      </a>
-                    </div>
-                  </div>
-                </div>
+  <div id="page-wrapper">
+    <div class="container-fluid">
+      <div class="row head-page">
+        <div class="col-md-12 col-sm-12">
+          <h2 class="Profile">Profil</h2>
+          <div class="profil">
+            <p class="Patar-Hutabarat"><img src="../../img/profile.png">&nbsp;&nbsp;   {{ $auth.user().name }}</p>
+            <div class="phone">
+              <p class="Phone-Number">Phone Number</p>
+              <p class="layer">{{ $auth.user().telepon }}</p>
             </div>
+            <div class="email">
+              <p class="E-mail">Email </p>
+              <p class="patarhutabaratpvj">{{ $auth.user().email }}</p>
+            </div>
+            <router-link v-bind:to=" { name: 'user' } " class="btn Button-Filter"><p class="Edit-Profile">Edit Profil <img src="../../img/write.svg" class="Write"></p></router-link>
+            <div class="pass">
+              <p class="Password">Password</p>
+              <btn class="btn Button-pass"><p class="Change-Password">Change Password<img src="../../img/Locked.svg" class="Locked"/></p></btn>
+            </div>
+          </div>
         </div>
+      </div>
     </div>
+  </div>
 </template>
-
 <script>
-export default {
-  name: 'hello',
-  data () {
-    return { }
-  },
-  beforeCreate: function () {
-    if (!this.$session.exists()) {
-      this.$router.push('/login')
+    export default {
+        data: function () {
+            return {
+                id: null,
+                name: null,
+                email: null,
+                telepon: null,
+                errors: [],
+                loading: false
+            }
+        },
+        created() {
+            this.$auth.ready(function () {
+                console.log(this); // Will be proper context.
+            });
+        }
+//            let app = this;
+//            this.id = this.$auth.params.id;
+//
+//            this.$http.get(apiUrl() + '/user/' + this.id)
+//                .then(function (res) {
+//                    res = res.data;
+//                    app.id = res.id;
+//                    app.name = res.name;
+//                    app.email = res.email;
+//                    app.telepon = res.telepon;
+//                })
+//                .catch(function (res) {
+//
+//                });
+//        },
     }
-  },
-  methods: {
-    logout: function () {
-      this.$session.destroy()
-      this.$router.push('/')
-    }
-  }
-}
 </script>

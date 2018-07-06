@@ -18,10 +18,13 @@ class UsersTableSeeder extends Seeder
 
         // Insert Main User
         DB::table('users')->insert([
+            'name' => 'admin',
             'email' => 'admin@admin.com',
             'password' => bcrypt('admin'),
             'remember_token' => str_random(10),
             'level' => 'admin',
+            'logo' => 'image',
+            'nm_merchant' => 'paypro',
             'created_at' => Carbon::now()
         ]);
 

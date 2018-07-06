@@ -23,6 +23,8 @@
         "vuetable-2": "^1.7.5"
     },
     "dependencies": {
-        "@websanova/vue-auth": "^2.21.12-beta"
+        "@babel/preset-stage-2": "^7.0.0-beta.51",
+        "@websanova/vue-auth": "^2.21.12-beta",
+        "babel-preset-stage-2": "^6.24.1"
     }
 }

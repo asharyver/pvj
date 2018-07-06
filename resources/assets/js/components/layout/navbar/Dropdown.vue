@@ -13,7 +13,8 @@ export default {
 <template>
     <li class="dropdown">
         <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-            <i :class="['fa fa-fw', icon]"></i> <i class="fa fa-caret-down"></i>
+            <p class="usr">Patar Hutabarat  &nbsp;<img class="use" src="../../img/bell.png">&nbsp;&nbsp; <img class="use" src="../../img/group.png"></p>
+            <!--<i :class="['fa fa-fw', icon]"></i> <i class="fa fa-caret-down"></i>-->
         </a>
         <ul :class="['dropdown-menu', dClass]">
             <slot></slot>

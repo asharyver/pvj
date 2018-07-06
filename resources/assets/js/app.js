@@ -24,17 +24,6 @@ let Router = new VueRouter({
     linkExactActiveClass: "",
 });
 
-/**
- * Error 404 Redirect
- */
-Router.beforeEach((to, from, next) => {
-    window.localStorage.setItem('isErrorPage', to.meta.error);
-    if (to.name == null) {
-        next({name: '404'});
-    } else {
-        next();
-    }
-});
 
 /**
  * Mixins
@@ -75,8 +64,11 @@ Vue.component('AppNavbar', Navbar);
 
 App.router = Vue.router = Router
 
+Vue.mixin(Mixins);
+
 Axios.defaults.baseURL = baseUrl() + '/api/'
 
+Vue.use(VueRouter)
 Vue.use(VueAxios, Axios)
 Vue.use(VueSession)
 

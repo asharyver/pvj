@@ -1,7 +1,66 @@
 @font-face {
     font-family: DINPro;
-    src: url('../../../DINPro-Bold.woff') format('woff');
+    src: url('./DINPro-Bold.woff') format('woff');
+    font-family: SFProText;
+    src: url('../SFPro/SFProDisplay-Black.ttf') format('ttf');
+    font-family: SFProText;
+    src: url('../SFPro/SFProDisplay-BlackItalic.ttf') format('ttf');
+    font-family: SFProText;
+    src: url('../SFPro/SFProDisplay-Bold.ttf') format('ttf');
+    font-family: SFProText;
+    src: url('../SFPro/SFProDisplay-BoldItalic.ttf') format('ttf');
+    font-family: SFProText;
+    src: url('../SFPro/SFProDisplay-heavy.ttf') format('ttf');
+    font-family: SFProText;
+    src: url('../SFPro/SFProDisplay-HeavyItalic.ttf') format('ttf');
+    font-family: SFProText;
+    src: url('../SFPro/SFProDisplay-Light.ttf') format('ttf');
+    font-family: SFProText;
+    src: url('../SFPro/SFProDisplay-LightItalic.ttf') format('ttf');
+    font-family: SFProText;
+    src: url('../SFPro/SFProDisplay-Medium.ttf') format('ttf');
+    font-family: SFProText;
+    src: url('../SFPro/SFProDisplay-MediumItalic.ttf') format('ttf');
+    font-family: SFProText;
+    src: url('../SFPro/SFProDisplay-Regular.ttf') format('ttf');
+    font-family: SFProText;
+    src: url('../SFPro/SFProDisplay-RegularItalic.ttf') format('ttf');
+    font-family: SFProText;
+    src: url('../SFPro/SFProDisplay-Semibold.ttf') format('ttf');
+    font-family: SFProText;
+    src: url('../SFPro/SFProDisplay-SemiboldItalic.ttf') format('ttf');
+    font-family: SFProText;
+    src: url('../SFPro/SFProDisplay-Thin.ttf') format('ttf');
+    font-family: SFProText;
+    src: url('../SFPro/SFProDisplay-ThinItalic.ttf') format('ttf');
+    font-family: SFProText;
+    src: url('../SFPro/SFProDisplay-Ultralight.ttf') format('ttf');
+    font-family: SFProText;
+    src: url('../SFPro/SFProDisplay-UltralightItalic.ttf') format('ttf');
+    font-family: SFProText;
+    src: url('../SFPro/SFProText-Bold.ttf') format('ttf');
+    font-family: SFProText;
+    src: url('../SFPro/SFProText-BoldItalic.ttf') format('ttf');
+    font-family: SFProText;
+    src: url('../SFPro/SFProText-Heavy.ttf') format('ttf');
+    font-family: SFProText;
+    src: url('../SFPro/SFProText-Light.ttf') format('ttf');
+    font-family: SFProText;
+    src: url('../SFPro/SFProText-LightItalic.ttf') format('ttf');
+    font-family: SFProText;
+    src: url('../SFPro/SFProText-Medium.ttf') format('ttf');
+    font-family: SFProText;
+    src: url('../SFPro/SFProText-MediumItalic.ttf') format('ttf');
+    font-family: SFProText;
+    src: url('../SFPro/SFProText-Regular.ttf') format('ttf');
+    font-family: SFProText;
+    src: url('../SFPro/SFProText-RegularItalic.ttf') format('ttf');
+    font-family: SFProText;
+    src: url('../SFPro/SFProText-Semibold.ttf') format('ttf');
+    font-family: SFProText;
+    src: url('../SFPro/SFProText-SemiboldItalic.ttf') format('ttf');
 }
+
 .judul{
     margin-top: 55%;
     text-align: left;
@@ -51,7 +110,7 @@
     margin-top: 6%;
 }
 
-   /*  -------------------------------------------------------*/
+/*  -------------------------------------------------------*/
 hgroup {   text-align:center;  margin-top: 3em;  opacity: 0.7;  padding: 30px;  background: #f94699;}
 h1, h3 { font-weight: 300; }
 h1 { color: #fff; }
@@ -140,16 +199,16 @@ html, body{   background-size:cover;    margin:0;padding:0;    height:100%;}
 }
 
 
-  /*  -----------------------------------------------------------  */
+/*  -----------------------------------------------------------  */
 
 .body-login{
-    background-image: url("../../img/bg-login.jpg");
+    background-image: url("../images/bg-login.jpg");
     background-size: cover;
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
     -ms-background-size: cover;
-    min-height: 100vh;
+    min-height: 100%;
 }
 .body-login:before{
     content: '';
@@ -174,8 +233,7 @@ html, body{   background-size:cover;    margin:0;padding:0;    height:100%;}
     margin-right: 3%;
     margin-bottom: 5%;
 }
-.styled-input
-.agile-styled-input-top {
+.styled-input.agile-styled-input-top{
     margin-top: 0;
 }
 .styled-input {
@@ -183,7 +241,6 @@ html, body{   background-size:cover;    margin:0;padding:0;    height:100%;}
     width: 85%;
     margin: 2em 0 2em 1em;
     position: relative;
-    margin-top: 0;
 }
 .contact-form input[type="password"],
 .contact-form input[type="email"],
@@ -197,6 +254,19 @@ html, body{   background-size:cover;    margin:0;padding:0;    height:100%;}
     background: none;
     -webkit-appearance: none;
     outline: none;
+}
+.styled-input input:focus~label,
+.styled-input input:valid~label,
+.styled-input textarea:focus~label,
+.styled-input textarea:valid~label {
+    font-size: 1em;
+    color: #d3d4d6;
+    top: -1.3em;
+    -webkit-transition: all 0.125s;
+    -moz-transition: all 0.125s;
+    -o-transition: all 0.125s;
+    -ms-transition: all 0.125s;
+    transition: all 0.125s;
 }
 .styled-input label {
     padding: 1.5em 0em;

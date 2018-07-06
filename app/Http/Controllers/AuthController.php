@@ -13,13 +13,13 @@ class AuthController extends Controller
 {
     public function login(Request $request)
     {
-        $credentials = $request->only('email', 'password');
+        $credentials = $request->only('telepon', 'password');
 
-        if (($user = DB::table('users')->select('password')->where('email', $request->input('email'))->latest()->first()) === null) {
+        if (($user = DB::table('users')->select('password')->where('telepon', $request->input('telepon'))->latest()->first()) === null) {
             return response([
                 'status' => 'error',
                 'error'  => 'email.not.exist',
-                'msg'  => 'Username not found !'
+                'msg'  => 'No Handphone not found !'
             ], 400);
         } elseif ( ! Hash::check($request->input('password'), $user->password)) {
             return response([
@@ -33,7 +33,7 @@ class AuthController extends Controller
             return response([
                 'status' => 'error',
                 'error' => 'invalid.credentials',
-                'msg' => 'Username or password wrong !'
+                'msg' => 'No Handphone or password wrong !'
             ], 400);
         }
 

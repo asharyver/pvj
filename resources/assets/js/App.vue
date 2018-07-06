@@ -1,21 +1,20 @@
 <template>
-    <div v-if="$auth.check() && isErrorPage" class="app header-fixed sidebar-fixed aside-menu-fixed sidebar-lg-show">
+    <div v-if="$auth.check()" class="app header-fixed sidebar-fixed aside-menu-fixed sidebar-lg-show">
         <app-navbar></app-navbar>
-        <div class="app-body">
-            <router-view></router-view>
-        </div>
     </div>
     <div v-else class="app flex-row align-items-center">
-        <!--<router-view></router-view>-->
+        <router-view></router-view>
     </div>
 </template>
 <script>
     export default {
-        data: {
-            isErrorPage: false
+        data: function () {
+            return {
+                isLogin: null
+            }
         },
         created() {
-            this.isErrorPage = window.localStorage.getItem('isErrorPage') != 'true'
+            this.isLogin = ! this.$auth.check()
         }
     }
 </script>

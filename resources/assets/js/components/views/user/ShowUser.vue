@@ -1,48 +1,75 @@
 <template>
-    <main class="main">
-        <headful
-            v-bind:title="'Menampilkan ' + username + ' - ' + appName"
-            description="User"
-        />
-        <ol class="breadcrumb">
-            <li class="breadcrumb-item">Home</li>
-            <li class="breadcrumb-item">Dashboard</li>
-            <li class="breadcrumb-item">User</li>
-            <li class="breadcrumb-item active">Show</li>
-        </ol>
+    <div id="page-wrapper">
         <div class="container-fluid">
-            <div class="animated fadeIn">
-                <div class="row">
-                    <div class="col-sm-12">
-                        <div class="card">
-                            <div class="card-header">
-                                {{ username }}
-                            </div>
-                            <div class="card-body">
-                                <form action="" class="form-horizontal">
-                                    <div class="form-group row">
-                                        <label class="col-md-3 col-form-label">Username</label>
-                                        <div class="col-md-9">
-                                            <p class="form-control-static">: {{ username }}</p>
-                                        </div>
+            <div class="row head-page">
+                <div class="col-lg-12">
+                    <h1 class="page-header">Data User</h1>
+                    <div class="card-body">
+                        <form action="" class="form-horizontal">
+                            <div class="body-form">
+                                <div class="form-group row">
+                                    <label class="col-md-3 col-form-label">Name</label>
+                                    <div class="col-md-9">
+                                        <p class="form-control-static">: {{ name }}</p>
                                     </div>
-                                    <div class="form-group row">
-                                        <label class="col-md-3 col-form-label">Alamat Email</label>
-                                        <div class="col-md-9">
-                                            <p class="form-control-static">: {{ email }}</p>
-                                        </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label class="col-md-3 col-form-label">No Handphone</label>
+                                    <div class="col-md-9">
+                                        <p class="form-control-static">: {{ telepon }}</p>
                                     </div>
-                                </form>
+                                </div>
+                                <div class="form-group row">
+                                    <label class="col-md-3 col-form-label">Email</label>
+                                    <div class="col-md-9">
+                                        <p class="form-control-static">: {{ email }}</p>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label class="col-md-3 col-form-label">Level</label>
+                                    <div class="col-md-9">
+                                        <p class="form-control-static">: {{ level }}</p>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label class="col-md-3 col-form-label">Nama Merchant</label>
+                                    <div class="col-md-9">
+                                        <p class="form-control-static">: {{ nm_merchant }}</p>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label class="col-md-3 col-form-label">Logo Merchant</label>
+                                    <div class="col-md-9">
+                                        <p class="form-control-static">: {{ logo }}</p>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="back">
+                                        <router-link v-bind:to=" { name: 'user' } " class="btn btn-danger">Back</router-link>
+                                    </div>
+                                </div>
                             </div>
-                        </div>
+                        </form>
                     </div>
                 </div>
             </div>
         </div>
-    </main>
+    </div>
 </template>
+
 <script>
     export default {
+        data: function() {
+            return {
+                id: null,
+                name: null,
+                telepon: null,
+                email: null,
+                nm_merchant: null,
+                logo: null,
+                level: null
+            }
+        },
         created() {
             let app = this;
             this.id = this.$route.params.id;
@@ -50,19 +77,16 @@
                 .then(function(res) {
                     res = res.data;
                     app.id = res.id;
-                    app.username = res.username;
+                    app.name = res.name;
+                    app.telepon = res.telepon;
                     app.email = res.email;
+                    app.level = res.level;
+                    app.nm_merchant = res.nm_merchant;
+                    app.logo = res.logo;
                 })
                 .catch(function(res) {
-                    
+
                 })
         },
-        data: function() {
-            return {
-                id: null,
-                username: null,
-                email: null
-            }
-        }
     }
 </script>

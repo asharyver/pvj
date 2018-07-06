@@ -1,8 +1,66 @@
-/*!
- * Start Bootstrap - SB Admin 2 v3.3.7+1 (http://startbootstrap.com/template-overviews/sb-admin-2)
- * Copyright 2013-2016 Start Bootstrap
- * Licensed under MIT (https://github.com/BlackrockDigital/startbootstrap/blob/gh-pages/LICENSE)
- */
+
+@font-face {
+  font-family: DINPro;
+  src: url('./DINPro-Bold.woff') format('woff');
+  font-family: SFProText;
+  src: url('../SFPro/SFProDisplay-Black.ttf') format('ttf');
+  font-family: SFProText;
+  src: url('../SFPro/SFProDisplay-BlackItalic.ttf') format('ttf');
+  font-family: SFProText;
+  src: url('../SFPro/SFProDisplay-Bold.ttf') format('ttf');
+  font-family: SFProText;
+  src: url('../SFPro/SFProDisplay-BoldItalic.ttf') format('ttf');
+  font-family: SFProText;
+  src: url('../SFPro/SFProDisplay-heavy.ttf') format('ttf');
+  font-family: SFProText;
+  src: url('../SFPro/SFProDisplay-HeavyItalic.ttf') format('ttf');
+  font-family: SFProText;
+  src: url('../SFPro/SFProDisplay-Light.ttf') format('ttf');
+  font-family: SFProText;
+  src: url('../SFPro/SFProDisplay-LightItalic.ttf') format('ttf');
+  font-family: SFProText;
+  src: url('../SFPro/SFProDisplay-Medium.ttf') format('ttf');
+  font-family: SFProText;
+  src: url('../SFPro/SFProDisplay-MediumItalic.ttf') format('ttf');
+  font-family: SFProText;
+  src: url('../SFPro/SFProDisplay-Regular.ttf') format('ttf');
+  font-family: SFProText;
+  src: url('../SFPro/SFProDisplay-RegularItalic.ttf') format('ttf');
+  font-family: SFProText;
+  src: url('../SFPro/SFProDisplay-Semibold.ttf') format('ttf');
+  font-family: SFProText;
+  src: url('../SFPro/SFProDisplay-SemiboldItalic.ttf') format('ttf');
+  font-family: SFProText;
+  src: url('../SFPro/SFProDisplay-Thin.ttf') format('ttf');
+  font-family: SFProText;
+  src: url('../SFPro/SFProDisplay-ThinItalic.ttf') format('ttf');
+  font-family: SFProText;
+  src: url('../SFPro/SFProDisplay-Ultralight.ttf') format('ttf');
+  font-family: SFProText;
+  src: url('../SFPro/SFProDisplay-UltralightItalic.ttf') format('ttf');
+  font-family: SFProText;
+  src: url('../SFPro/SFProText-Bold.ttf') format('ttf');
+  font-family: SFProText;
+  src: url('../SFPro/SFProText-BoldItalic.ttf') format('ttf');
+  font-family: SFProText;
+  src: url('../SFPro/SFProText-Heavy.ttf') format('ttf');
+  font-family: SFProText;
+  src: url('../SFPro/SFProText-Light.ttf') format('ttf');
+  font-family: SFProText;
+  src: url('../SFPro/SFProText-LightItalic.ttf') format('ttf');
+  font-family: SFProText;
+  src: url('../SFPro/SFProText-Medium.ttf') format('ttf');
+  font-family: SFProText;
+  src: url('../SFPro/SFProText-MediumItalic.ttf') format('ttf');
+  font-family: SFProText;
+  src: url('../SFPro/SFProText-Regular.ttf') format('ttf');
+  font-family: SFProText;
+  src: url('../SFPro/SFProText-RegularItalic.ttf') format('ttf');
+  font-family: SFProText;
+  src: url('../SFPro/SFProText-Semibold.ttf') format('ttf');
+  font-family: SFProText;
+  src: url('../SFPro/SFProText-SemiboldItalic.ttf') format('ttf');
+}
 body {
   background-color: #f8f8f8;
 }
@@ -97,7 +155,7 @@ input {  font-size: 18px;  padding: 10px 10px 10px 5px;  -webkit-appearance: non
 input:focus { outline: none; }
 
 /* Label */
-label {  color: #999;   font-size: 18px;  font-weight: normal;  position: absolute;  pointer-events: none;  left: 5px;  top: 10px;  -webkit-transition:all 0.2s ease;  transition: all 0.2s ease;}
+/*label {  color: #999;   font-size: 18px;  font-weight: normal;  position: absolute;  pointer-events: none;  left: 5px;  top: 10px;  -webkit-transition:all 0.2s ease;  transition: all 0.2s ease;}*/
 
 /* active */
 
@@ -199,7 +257,7 @@ input:focus ~ .highlight {  -webkit-animation: inputHighlighter 0.3s ease;      
   background-color: #530050;
   margin-left: -45px;
   margin-right: -45px;
-  height: 200px;
+  height: 140px;
 }
 .page-header {
   padding-bottom: 9px;
@@ -251,16 +309,17 @@ input:focus ~ .highlight {  -webkit-animation: inputHighlighter 0.3s ease;      
 .navbar-right {
   float: right!important;
   background-color: #8A2785;
-  padding-left: 60.6%;
+  padding-left: 68%;
 }
 .navbar-top-links {
   margin-right: 0;
+  margin-top: -49px;
 }
 .navbar-top-links li {
   display: inline-block;
 }
 .navbar-top-links li:last-child {
-  float: right;
+  float: left;
   margin-right: 15px;
 }
 .navbar-top-links li a {
@@ -345,7 +404,28 @@ a {
   color: #0b0b0b;
   text-decoration: none;
 }
-
+.btn-create{
+  margin-bottom: 50px;
+  margin-left: 25px;
+  margin-top: 25px;
+}
+.body-form{
+  border: solid 1px #666666;
+  padding: 15px;
+  margin-top: 70px;
+}
+.dropdown-menu{
+  min-width: 190px;
+}
+.labels {
+  display: inline-block;
+  max-width: 100%;
+  margin-bottom: 5px;
+}
+.back{
+  margin-top: 5%;
+  margin-left: 29%;
+}
 .form-control1 {
   display: block;
   width: 100%;
@@ -365,6 +445,162 @@ a {
   transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
 }
 
+/*-------------------     Edit Profil     --------------------------*/
+.Profile {
+  width: 67px;
+  height: 26px;
+  margin-top: 52px;
+  font-family: SFProText;
+  font-size: 22px;
+  font-weight: normal;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: normal;
+  letter-spacing: normal;
+  color: #ffffff;
+}
+.profil{
+  margin-top: 81px;
+  margin-left: 25px;
+}
+.Shape {
+  width: 24px;
+  height: 24px;
+  background-color: #4a4a4a;
+}
+.Patar-Hutabarat {
+  width: 189px;
+  height: 29px;
+  font-family: SFProText;
+  font-size: 24px;
+  font-weight: 600;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: normal;
+  letter-spacing: normal;
+  color: #4a4a4a;
+}
+.Phone-Number {
+  width: 130px;
+  height: 21px;
+  font-family: SFProText;
+  font-size: 18px;
+  font-weight: 500;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: normal;
+  letter-spacing: normal;
+  color: #530050;
+}
+.layer {
+  width: 138px;
+  height: 21px;
+  font-family: SFProText;
+  font-size: 18px;
+  font-weight: 500;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: normal;
+  letter-spacing: normal;
+  color: #4a4a4a;
+}
+.E-mail {
+  width: 56px;
+  height: 21px;
+  font-family: SFProText;
+  font-size: 18px;
+  font-weight: 500;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: normal;
+  letter-spacing: normal;
+  color: #530050;
+}
+.patarhutabaratpvj {
+  width: 222px;
+  height: 21px;
+  font-family: SFProText;
+  font-size: 18px;
+  font-weight: 500;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: normal;
+  letter-spacing: normal;
+  color: #4a4a4a;
+}
+.phone{
+  margin-top: 30px;
+  margin-bottom: 30px;
+}
+.email{
+  margin-bottom: 39px;
+}
+.Button-Filter {
+  width: 155px;
+  height: 42px;
+  border-radius: 5px;
+  background-color: #8a2785;
+  box-shadow: 0 0 30px 0 rgba(0, 0, 0, 0.2);
+}
+.Button-pass {
+  width: 199px;
+  height: 42px;
+  border-radius: 5px;
+  background-color: #8a2785;
+  box-shadow: 0 0 30px 0 rgba(0, 0, 0, 0.2);
+}
+.Edit-Profile {
+  width: 83px;
+  height: 19px;
+  font-family: SFProText;
+  font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: normal;
+  letter-spacing: normal;
+  color: #ffffff;
+}
+.Write {
+  width: 28px;
+  height: 28px;
+  object-fit: contain;
+  margin-left: 20px;
+}
+.pass{
+  margin-top: 35px;
+}
+.Password {
+  width: 85px;
+  height: 21px;
+  font-family: SFProText;
+  font-size: 18px;
+  font-weight: 500;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: normal;
+  letter-spacing: normal;
+  color: #530050;
+}
+.Change-Password {
+  width: 137px;
+  height: 19px;
+  font-family: SFProText;
+  font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: normal;
+  letter-spacing: normal;
+  color: #ffffff;
+}
+.Locked {
+  width: 28px;
+  height: 28px;
+  margin-left: 20px;
+  object-fit: contain;
+}
+/*-------------------    // End Edit Profil     --------------------------*/
 
 @media (min-width: 768px) {
   .sidebar {

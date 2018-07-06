@@ -1,65 +1,70 @@
 <template>
-    <main class="main">
-        <headful v-bind:title="'Edit User - ' + appName" description="User" />
-        <!-- Breadcrumb-->
-        <ol class="breadcrumb">
-            <li class="breadcrumb-item">Home</li>
-            <li class="breadcrumb-item">Dashboard</li>
-            <li class="breadcrumb-item">User</li>
-            <li class="breadcrumb-item active">Edit</li>
-        </ol>
+    <div id="page-wrapper">
         <div class="container-fluid">
-            <div class="animated fadeIn">
-                <div class="row">
-                    <div class="col-sm-12">
-                        <div class="card">
-                            <div class="card-body">
-                                <div class="alert alert-danger" v-for="(error) in errors">
-                                    {{ error }}
-                                </div>
-                                <form v-bind:action="currentUrl" method="POST" v-on:submit.prevent="save">
-                                    <div class="form-group">
-                                        <label for="username">Username</label>
-                                        <input type="text" id="username" name="username" class="form-control" placeholder="Username" v-model="username" />
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="email">Email</label>
-                                        <input type="email" id="email" name="email" class="form-control" placeholder="Email" v-model="email" />
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="password">Password</label>
-                                        <input type="password" id="password" name="password" class="form-control" placeholder="Password" v-model="password" />
-                                    </div>
-                                    <div class="form-group">
-                                        <button class="btn btn-success" v-bind:disabled="loading == true">Update</button>
-                                        <div id="fountainG" v-if="loading">
-                                            <div id="fountainG_1" class="fountainG"></div>
-                                            <div id="fountainG_2" class="fountainG"></div>
-                                            <div id="fountainG_3" class="fountainG"></div>
-                                            <div id="fountainG_4" class="fountainG"></div>
-                                            <div id="fountainG_5" class="fountainG"></div>
-                                            <div id="fountainG_6" class="fountainG"></div>
-                                            <div id="fountainG_7" class="fountainG"></div>
-                                            <div id="fountainG_8" class="fountainG"></div>
-                                        </div>
-                                    </div>
-                                </form>
+            <div class="row head-page">
+                <div class="col-lg-12">
+                    <h1 class="page-header">Edit Data User</h1>
+                    <form @submit.prevent="save">
+                        <div class="col-md-6 col-sm-6 body-form">
+                            <div class="alert alert-danger" v-if="errors" v-for="error in errors">
+                                <p>{{ error }}</p>
+                            </div>
+                            <div class="form-group">
+                                <div class="labels" for="name">Name</div>
+                                <input type="text" id="name" name="name" class="form-control" placeholder="Input Name" v-model="name" />
+                            </div>
+                            <div class="form-group">
+                                <div class="labels" for="email">Email</div>
+                                <input type="email" id="email" name="email" class="form-control" placeholder="Email" v-model="email" />
+                            </div>
+                            <div class="form-group">
+                                <div class="labels" for="telepon">No Handphone</div>
+                                <input type="number" id="telepon" name="telepon" class="form-control" placeholder="Input No Handphone" v-model="telepon" />
+                            </div>
+                            <div class="form-group">
+                                <div class="labels" for="password">Password</div>
+                                <input type="password" id="password" name="password" class="form-control" placeholder="Kosongkan Jika tidak diubah" v-model="password" />
+                            </div>
+                            <div class="form-group">
+                                <div class="labels" for="level">Level</div>
+                                <select name="level" id="level" class="form-control" v-model="level">
+                                    <option value="">-- Pilih Level --</option>
+                                    <option value="admin"> Admin</option>
+                                    <option value="staff"> Staff</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <div class="labels" for="nm_merchant">Nama Merchant</div>
+                                <input type="text" id="nm_merchant" name="nm_merchant" class="form-control" placeholder="Input Nama" v-model="nm_merchant" />
+                            </div>
+                            <div class="form-group">
+                                <div class="labels" for="nm_merchant">Logo Merchant</div>
+                                <input type="text" id="logo" name="logo" class="form-control" placeholder="Input Nama" v-model="logo" />
+                            </div>
+                            <div class="form-group">
+                                <router-link v-bind:to=" { name: 'user' } " class="btn btn-danger">Back</router-link>&nbsp;
+                                <button type="submit" class="btn btn-success"> Update</button>
+                                <!--<button class="btn btn-success" v-bind:disabled="loading == true">Update</button>-->
                             </div>
                         </div>
-                    </div>
+                    </form>
                 </div>
             </div>
         </div>
-    </main>
+    </div>
 </template>
 <script>
     export default {
         data: function() {
             return {
                 id: null,
-                username: null,
+                name: null,
                 email: null,
+                telepon: null,
+                level: null,
                 password: null,
+                nm_merchant: null,
+                logo: null,
                 errors: [],
                 loading: false
             }
@@ -67,41 +72,70 @@
         created() {
             let app = this;
             this.id = this.$route.params.id;
-            
-//            this.$http.get(apiUrl() + '/jurusan')
-//                .then(function(res) {
-//                    app.jurusan = res.data;
-//            });
-            
+
             this.$http.get(apiUrl() + '/user/' + this.id)
                 .then(function(res) {
                     res = res.data;
                     app.id = res.id;
-                    app.username = res.username;
+                    app.name = res.name;
                     app.email = res.email;
+                    app.telepon = res.telepon;
+                    app.level = res.level;
                     app.password = res.password;
+                    app.nm_merchant = res.nm_merchant;
+                    app.logo = res.logo;
                 })
                 .catch(function(res) {
-                    
+
                 });
         },
         methods: {
             save() {
+                this.errors = [];
+                if (this.name == null) {
+                    this.errors.push('Nama pengguna dibutuhkan !');
+                    document.getElementById('name').focus();
+                    return false;
+                } else if (this.email == null) {
+                    this.errors.push('Email pengguna dibutuhkan !');
+                    document.getElementById('email').focus();
+                    return false;
+                } else if (this.telepon == null) {
+                    this.errors.push('The telepon field is required.]');
+                    document.getElementById('telepon').focus();
+                    return false;
+                } else if (this.level == null) {
+                    this.errors.push('Level belum di pilih !');
+                    document.getElementById('level').focus();
+                    return false;
+                } else if (this.nm_merchant == null) {
+                    this.errors.push('Nama Merchant dibutuhkan !');
+                    document.getElementById('nm_merchant').focus();
+                    return false;
+                } else if (this.logo == null) {
+                    this.errors.push('Logo dibutuhkan !');
+                    document.getElementById('logo').focus();
+                    return false;
+                }
                 if (this.loading) {
                     return false;
                 }
-                
+
                 let app = this;
                 app.loading = true;
                 app.errors = null;
                 this.$http.put(apiUrl() + '/user/' + this.id, {
-                    username: app.username,
+                    name: app.name,
                     email: app.email,
-                    password: app.password
+                    telepon: app.telepon,
+                    level: app.level,
+                    password: app.password,
+                    nm_merchant: app.nm_merchant,
+                    logo: app.logo
                 }).then(function(res){
                     app.loading = false;
                     window.localStorage.setItem('success', JSON.stringify([
-                                                                          'user ' + app.username + ' telah diubah'
+                                                                          'user : ' + app.name + ' telah diubah'
                                                                           ]));
                     app.$router.push({name: 'user'});
                 }).catch(function(res) {
