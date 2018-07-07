@@ -1,9 +1,24 @@
 
 // Fonts
-@import url("https://fonts.googleapis.com/css?family=Raleway:300,400,600");
+// @import url("https://fonts.googleapis.com/css?family=Raleway:300,400,600");
 
 // Variables
 @import "variables";
 
+// Font Awesome
+@import "~font-awesome/scss/font-awesome.scss";
+
 // Bootstrap
-@import "node_modules/bootstrap-sass/assets/stylesheets/bootstrap";
+@import "../vendor/css/bootstrap.min.css";
+
+// SB Admin
+@import "../vendor/css/sb-admin-2.css";
+
+// Login
+@import "../vendor/css/login.css";
+
+// SMS
+@import "sms";
+
+// Paginations
+@import "_pagination";

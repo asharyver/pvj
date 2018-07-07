@@ -1,5 +1,5 @@
 <template>
-    <div id="page-wrapper">
+    <div id="page-wrapper" class="sms">
         <div class="container-fluid">
             <div class="row head-page">
                 <div class="col-lg-12">
@@ -75,17 +75,13 @@
                     }
                 },
                 fields: [{
-                    name: 'id',
-                    sortField: 'id',
-                    title: "ID"
-                },{
                     name: 'received',
                     sortField: 'received',
                     title: 'Received'
                 },{
                     name: 'amount',
                     sortField: 'amount',
-                    title: 'Amount'
+                    title: 'Amount (Rp)'
                 },{
                     name: 'receiver',
                     sortField: 'receiver',
@@ -93,26 +89,25 @@
                 },{
                     name: 'sdn',
                     sortField: 'sdn',
-                    title: 'Sdn'
+                    title: 'MSISDN'
                 }],
                 css: {
                     table: {
-                        tableClass: 'table table-bordered table-striped table-hover',
+                        tableClass: 'table table-bordered table-hover sms-table',
                         ascendingIcon: 'fa fa-angle-up',
-                        descendingIcon: 'fa fa-angle-down',
-                        th: 'sms',
+                        descendingIcon: 'fa fa-angle-down'
                     },
                     paginations: {
                         wrapperClass: 'paginations',
                         activeClass: 'active',
-                        disabledClass: 'disabled',
+                        disabledClass: '',
                         pageClass: 'page-item',
-                        linkClass: 'link',
+                        linkClass: 'page-item',
                         icons: {
-                            first: '',
-                            prev: '',
-                            next: '',
-                            last: '',
+                            first: 'fa fa-angle-double-left',
+                            prev: 'fa fa-angle-left',
+                            next: 'fa fa-angle-right',
+                            last: 'fa fa-angle-double-right',
                         },
                     },
                     icons: {
@@ -123,8 +118,8 @@
                     }
                 },
                 sortOrder: [{
-                    field: 'id',
-                    sortField: 'id',
+                    field: 'received',
+                    sortField: 'received',
                     direction: 'asc'
                 }
                 ],
@@ -165,28 +160,3 @@
         }
     }
 </script>
-<style type="text/css">
-    .paginations {
-        display: inline-block;
-        float: right;
-        margin: 20px 0;
-        border-radius: 4px;
-    }
-    .paginations > a {
-        border: 1px solid #eee;
-        padding: 13px;
-        display: inline-block;
-        cursor: pointer;
-    }
-    .paginations > a:hover,
-    .paginations .active {
-        background: #eee;
-    }
-    /*.paginations .disabled {*/
-        /*pointer-events: none;*/
-        /*cursor: disabled;*/
-    /*}*/
-    .sms > th {
-        background-color: #ffffff;
-    }
-</style>
