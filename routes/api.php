@@ -25,6 +25,7 @@ Route::group(['middleware' => 'jwt.auth'], function() {
     Route::get('auth/user', 'AuthController@user');
     Route::post('auth/logout', 'AuthController@logout');
     Route::resource('user', 'UserController');
+    Route::resource('sms', 'SmsController');
 });
 
 Route::group(['middleware' => 'jwt.refresh'], function() {
