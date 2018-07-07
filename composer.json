@@ -37,6 +37,12 @@
         }
     },
     "scripts": {
+        "app-install": [
+            "echo \"Application Installation running ...\"",
+            "composer run post-root-package-install",
+            "composer run post-create-project-cmd",
+            "composer run post-autoload-dump"
+        ],
         "post-root-package-install": [
             "@php -r \"file_exists('.env') || copy('.env.example', '.env');\""
         ],
