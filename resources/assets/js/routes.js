@@ -2,7 +2,7 @@ export default [
     {
         path: '/login',
         name: 'login',
-        component: require('./components/views/Login'),
+        component: require('./components/views/login'),
         meta: {
             auth: false
         }
