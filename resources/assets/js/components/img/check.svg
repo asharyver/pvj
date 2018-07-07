@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="18px" height="13px" viewBox="0 0 18 13" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 50.2 (55047) - http://www.bohemiancoding.com/sketch -->
+    <title>Icons/ @Filter@0,5x</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <path d="M15.7733154,4.58269111 L6.75890625,13.12138 L4.30280055,10.428039 C3.75644235,9.82898463 2.80607981,9.76744453 2.18052473,10.2924585 C1.55496965,10.8174725 1.49181264,11.7280736 2.03917334,12.3280896 L5.54789577,16.1743459 C5.82057363,16.4733923 6.21054306,16.6512816 6.62457231,16.6657051 C6.64361966,16.6666667 6.66166452,16.6666667 6.67970937,16.6666667 C7.07469127,16.6666667 7.45463579,16.5176242 7.73633607,16.251271 L17.8865688,6.63563038 C18.4770367,6.07503853 18.4830516,5.16155267 17.8996012,4.59519144 C17.3161508,4.02883021 16.3637833,4.02306083 15.7733154,4.58269111" id="path-1"></path>
+    </defs>
+    <g id="Assets" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="11---Edit-Profile" transform="translate(-447.000000, -562.000000)">
+            <g id="Button-Filter" transform="translate(373.000000, 547.000000)">
+                <g id="Icons-/-Success-Without-circle" transform="translate(73.000000, 11.000000)">
+                    <mask id="mask-2" fill="white">
+                        <use xlink:href="#path-1"></use>
+                    </mask>
+                    <use id="Success" fill="#1A1919" fill-rule="evenodd" xlink:href="#path-1"></use>
+                    <g id="colors-/-white" mask="url(#mask-2)" fill="#FFFFFF" fill-rule="evenodd">
+                        <rect id="Rectangle-334-Copy" x="0" y="0" width="20" height="20"></rect>
+                    </g>
+                    <path d="" id="Path-3" stroke="#979797" stroke-width="1" mask="url(#mask-2)"></path>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

@@ -56,25 +56,9 @@ export default [
         }
     },
     // {
-    //     path: '/mahasiswa/create',
-    //     name: 'create.mahasiswa',
-    //     component: require('./components/CreateMahasiswa'),
-    //     meta: {
-    //         auth: true
-    //     }
-    // },
-    // {
-    //     path: '/mahasiswa/show/:id',
-    //     name: 'show.mahasiswa',
-    //     component: require('./components/ShowMahasiswa'),
-    //     meta: {
-    //         auth: true
-    //     }
-    // },
-    // {
-    //     path: '/mahasiswa/edit/:id',
-    //     name: 'edit.mahasiswa',
-    //     component: require('./components/EditMahasiswa'),
+    //     path: '/profil/edit/:id',
+    //     name: 'edit.profil',
+    //     component: require('./components/EditProfil'),
     //     meta: {
     //         auth: true
     //     }
