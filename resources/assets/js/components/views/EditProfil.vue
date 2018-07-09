@@ -68,7 +68,7 @@
  
                 if (this.loading) {
                     return false;
-                }
+                }   
 
                 let app = this;
                 app.loading = true;
