@@ -18798,7 +18798,7 @@ if (false) {
         auth: true
     }
 }, {
-    path: '/profil/edit:id',
+    path: '/profil/edit',
     name: 'edit.profil',
     component: __webpack_require__(199),
     meta: {

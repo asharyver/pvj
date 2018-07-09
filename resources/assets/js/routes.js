@@ -56,7 +56,7 @@ export default [
         }
     },
     {
-        path: '/profil/edit:id',
+        path: '/profil/edit',
         name: 'edit.profil',
         component: require('./components/views/EditProfil'),
         meta: {
