@@ -14,7 +14,7 @@
               <p class="E-mail">Email </p>
               <p class="patarhutabaratpvj">{{ $auth.user().email }}</p>
             </div>
-              <div class="table-button-container" slot="actions" slot-scope="props">
+              <div slot="actions" slot-scope="props">
                 <button class="btn Button-Filter" @click="editRow(props.rowData)"><p class="Edit-Profile">Edit Profil <img src="../../img/write.svg" class="Write"></p></button>
                 <!--<router-link v-bind:to=" { name: 'edit.profil' } " class="btn btn-default Button-Filter"><p class="Edit-Profile">Edit Profil <img src="../../img/write.svg" class="Write"></p></router-link>-->
                 <div class="pass">
@@ -51,21 +51,26 @@
                 let id = rowData.id;
                 this.$router.push({name: 'edit.profil', params: {id}})
             },
-        }
-//            let app = this;
-//            this.id = this.$auth.params.id;
-//
-//            this.$http.get(apiUrl() + '/user/' + this.id)
-//                .then(function (res) {
-//                    res = res.data;
-//                    app.id = res.id;
-//                    app.name = res.name;
-//                    app.email = res.email;
-//                    app.telepon = res.telepon;
-//                })
-//                .catch(function (res) {
-//
-//                });
-//        },
+        },
+       created() {
+        let app = this;
+      this.id = this.$route.params.id;
+
+      this.$http.get(apiUrl() + '/user/' + this.id)
+          .then(function(res) {
+              res = res.data;
+              app.id = res.id;
+              app.name = res.name;
+              app.email = res.email;
+              app.telepon = res.telepon;
+              app.level = res.level;
+              app.password = res.password;
+              app.nm_merchant = res.nm_merchant;
+              app.logo = res.logo;
+          })
+          .catch(function(res) {
+
+          });
+      },
     }
 </script>
