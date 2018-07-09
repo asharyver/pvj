@@ -10,9 +10,11 @@
         "production": "cross-env NODE_ENV=production node_modules/webpack/bin/webpack.js --progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js"
     },
     "devDependencies": {
+        "@babel/preset-stage-2": "^7.0.0-beta.51",
         "axios": "^0.16.2",
-        "bootstrap-sass": "^3.3.7",
+        "babel-preset-stage-2": "^6.24.1",
         "cross-env": "^5.0.1",
+        "font-awesome": "^4.7.0",
         "jquery": "^3.1.1",
         "laravel-mix": "^1.0",
         "lodash": "^4.17.4",
@@ -23,8 +25,6 @@
         "vuetable-2": "^1.7.5"
     },
     "dependencies": {
-        "@babel/preset-stage-2": "^7.0.0-beta.51",
-        "@websanova/vue-auth": "^2.21.12-beta",
-        "babel-preset-stage-2": "^6.24.1"
+        "@websanova/vue-auth": "^2.21.12-beta"
     }
 }
