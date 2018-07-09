@@ -30,3 +30,12 @@ div#page-wrapper.sms {
         }
     }
 }
+
+.btn-sms {
+    .btn {
+        width: 12em;
+    }
+    .btn + .btn {
+        margin-left: 1em;
+    }
+}
