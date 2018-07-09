@@ -6,6 +6,7 @@
           <h2 class="Profile">Profil</h2>
             <form @submit.prevent="save">
                 <div class="col-md-6 col-sm-6 edit">
+                    <input type="hidden" v-model="$auth.user().id"/>
                     <div class="styled-input agile-styled-input-top">
                         <input type="text" name="name" v-model="$auth.user().name">
                         <label>Full Name</label>

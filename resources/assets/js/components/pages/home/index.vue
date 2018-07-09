@@ -5,6 +5,7 @@
         <div class="col-md-12 col-sm-12">
           <h2 class="Profile">Profil</h2>
           <div class="profil">
+            <input type="hidden" v-model="id"/>
             <p class="Patar-Hutabarat"><img src="../../img/profile.png">&nbsp;&nbsp;   {{ $auth.user().name }}</p>
             <div class="phone">
               <p class="Phone-Number">Phone Number</p>
@@ -14,15 +15,15 @@
               <p class="E-mail">Email </p>
               <p class="patarhutabaratpvj">{{ $auth.user().email }}</p>
             </div>
-              <div slot="actions" slot-scope="props">
-                <button class="btn Button-Filter" @click="editRow(props.rowData)"><p class="Edit-Profile">Edit Profil <img src="../../img/write.svg" class="Write"></p></button>
-                <!--<router-link v-bind:to=" { name: 'edit.profil' } " class="btn btn-default Button-Filter"><p class="Edit-Profile">Edit Profil <img src="../../img/write.svg" class="Write"></p></router-link>-->
+
+                <button class="btn Button-Filter" @click="editRow(id)"><p class="Edit-Profile">Edit Profil <img src="../../img/write.svg" class="Write"></p></button>
+                <!--<router-link v-bind:to=" { name: 'edit.profil', params.id } " class="btn btn-default Button-Filter"><p class="Edit-Profile">Edit Profil <img src="../../img/write.svg" class="Write"></p></router-link>-->
                 <div class="pass">
                   <p class="Password">Password</p>
-                  <button class="btn Button-pass" @click="editRow(props.rowData)"><p class="Edit-Profile">Edit Profil <img src="../../img/write.svg" class="Write"></p></button>
-                  <!--<router-link v-bind:to=" { name: 'edit.password' } " class="btn Button-pass"><p class="Change-Password">Change Password<img src="../../img/Locked.svg" class="Locked"/></p></router-link>-->
+                  <!--<button class="btn Button-pass" @click="editRow($auth.rowData)"><p class="Edit-Profile">Edit Profil <img src="../../img/write.svg" class="Write"></p></button>-->
+                  <router-link v-bind:to=" { name: 'edit.password' } " class="btn Button-pass"><p class="Change-Password">Change Password<img src="../../img/Locked.svg" class="Locked"/></p></router-link>
                 </div>
-              </div>
+
           </div>
         </div>
       </div>
@@ -47,30 +48,26 @@
             });
         },
         methods: {
-            editRow(rowData) {
-                let id = rowData.id;
+            editRow() {
+                let id = id;
                 this.$router.push({name: 'edit.profil', params: {id}})
             },
         },
-       created() {
-        let app = this;
-      this.id = this.$route.params.id;
-
-      this.$http.get(apiUrl() + '/user/' + this.id)
-          .then(function(res) {
-              res = res.data;
-              app.id = res.id;
-              app.name = res.name;
-              app.email = res.email;
-              app.telepon = res.telepon;
-              app.level = res.level;
-              app.password = res.password;
-              app.nm_merchant = res.nm_merchant;
-              app.logo = res.logo;
-          })
-          .catch(function(res) {
-
-          });
-      },
+//       created() {
+//        let app = this;
+//      this.id = this.$route.params.id;
+//
+//      this.$http.get(apiUrl() + '/user/' + this.id)
+//          .then(function(res) {
+//              res = res.data;
+//              app.id = res.id;
+//              app.name = res.name;
+//              app.email = res.email;
+//              app.telepon = res.telepon;
+//          })
+//          .catch(function(res) {
+//
+//          });
+//      },
     }
 </script>

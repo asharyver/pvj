@@ -4,7 +4,9 @@
             <div class="row head-page">
                 <div class="col-lg-12">
                     <h1 class="page-header">SMS Report</h1>
-
+                    <div class="filter">
+                        <button class="Btn-Filter" type="button" data-toggle="modal" data-target="#caridata"><p class="Filter-Search">Filter Search   <i class="fa fa-sliders"></i></p></button>
+                    </div>
                     <div class="alert alert-success" v-for="val in success">
                         {{ val }}
                     </div>
@@ -25,28 +27,55 @@
                     </vuetable-pagination>
                 </div>
             </div>
-        </div>
-        <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-            <div class="modal-dialog modal-danger" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h4 class="modal-title">Delete {{ deleteInfo.name }} ?</h4>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        <p>Are you sure to delete : {{ deleteInfo.name }} ?</p>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
-                        <button type="button" class="btn btn-danger" v-on:click.prevent="deleteUser">Delete</button>
+            <div class="modal fade" id="caridata" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header text-left">
+                            <h4 class="modal-title w-100 font-weight-bold pull-left">Filter Search</h4>
+                            <button class="pull-right close" type="button" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                            <div class="clearfix"></div>
+                        </div>
+                        <div class="modal-body">
+                            <div class="form">
+                <span class="lg-search">
+                    <i class="fa fa-3x fa-mobile fa-hp"></i>
+                </span>
+                                <div class="styled-input agile-styled-input-top">
+                                    <input type="text" id="MSISDN" name="MSISDN" required="">
+                                    <label>Receiver Number (MSISDN)</label>
+                                    <span></span>
+                                </div>
+                                <div class="row no-gutters">
+                                    <div class="col-md-6">
+                    <span class="lg1-search">
+                    <i class="fa fa-2x fa-calendar-o fa-cal"></i>
+                    </span>
+                                        <div class="styled-input agile-styled-input-top">
+                                            <input type="text" placeholder="Start Date" id="fromDate" required="" class="datepicker">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                    <span class="lg1-search">
+                    <i class="fa fa-2x fa-calendar-o fa-cal"></i>
+                    </span>
+                                        <div class="styled-input agile-styled-input-top">
+                                            <input type="text" placeholder="End Date" id="toDate" required="" class="datepicker">
+                                        </div>
+                                    </div>
+                                    <div class="clearfix"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button class="btn-filter" onclick="$('#caridata').modal('hide')" id="searching">Search <i style="padding-left: 10px" class="glyphicon glyphicon-search"></i></button>
+                        </div>
                     </div>
                 </div>
-                <!-- /.modal-content -->
             </div>
-            <!-- /.modal-dialog -->
         </div>
+
     </div>
 </template>
 <script>
@@ -134,18 +163,7 @@
             onChangePage (page) {
                 this.$refs.vuetable.changePage(page)
             },
-            showRow(rowData){
-                let id = rowData.id;
-                this.$router.push({name: 'show.user', params: {id}})
-            },
-            editRow(rowData) {
-                let id = rowData.id;
-                this.$router.push({name: 'edit.user', params: {id}})
-            },
-            deleteRow(rowData){
-                this.deleteInfo = rowData;
-            },
-            deleteUser() {
+            caridata() {
                 this.$http.delete(apiUrl() + '/user/' + this.deleteInfo.id)
                     .then(function(res){
                         window.localStorage.setItem('success', JSON.stringify([
@@ -160,3 +178,4 @@
         }
     }
 </script>
+

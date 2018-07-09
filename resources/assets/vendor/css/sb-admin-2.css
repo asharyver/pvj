@@ -567,12 +567,23 @@ a {
   object-fit: contain;
   margin-left: 20px;
 }
+.pas{
+  margin-top: 29px;
+}
 .pass{
   margin-top: 35px;
+  border-top: solid 1px #ebebeb;
+}
+.past{
+  margin-top: 30px;
+}
+.form-pass{
+  margin-left: -45px;
 }
 .Password {
   width: 85px;
   height: 21px;
+  margin-top: 30px;
   font-family: SFProText;
   font-size: 18px;
   font-weight: 500;
@@ -584,9 +595,22 @@ a {
 }
 .Change-Password {
   width: 137px;
-  height: 19px;
+  height: 26px;
   font-family: SFProText;
   font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: normal;
+  letter-spacing: normal;
+  color: #ffffff;
+}
+.Ubah-Password{
+  width: 167px;
+  height: 26px;
+  margin-top: 52px;
+  font-family: SFProText;
+  font-size: 22px;
   font-weight: normal;
   font-style: normal;
   font-stretch: normal;
@@ -601,6 +625,32 @@ a {
   object-fit: contain;
 }
 /*-------------------    // End Edit Profil     --------------------------*/
+
+/*---------------------------- page sms ----------------------------------*/
+.Btn-Filter {
+  width: 175px;
+  height: 42px;
+  border-radius: 5px;
+  background-color: #8a2785;
+  box-shadow: 0 0 30px 0 rgba(0, 0, 0, 0.2);
+}
+.Filter-Search {
+  width: 159px;
+  height: 11px;
+  font-family: SFProText;
+  font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: normal;
+  letter-spacing: normal;
+  text-align: center;
+  color: #ffffff;
+}
+.filter{
+  float: right;
+  margin: 1px 20px 20px 0;
+}
 
 @media (min-width: 768px) {
   .sidebar {

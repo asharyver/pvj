@@ -18894,41 +18894,40 @@ module.exports = Component.exports
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-
-/* harmony default export */ __webpack_exports__["default"] = (_defineProperty({
+/* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
         return {
             id: null,
@@ -18946,27 +18945,28 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     },
 
     methods: {
-        editRow: function editRow(rowData) {
-            var id = rowData.id;
+        editRow: function editRow() {
+            var id = id;
             this.$router.push({ name: 'edit.profil', params: { id: id } });
         }
     }
-}, 'created', function created() {
-    var app = this;
-    this.id = this.$route.params.id;
-
-    this.$http.get(apiUrl() + '/user/' + this.id).then(function (res) {
-        res = res.data;
-        app.id = res.id;
-        app.name = res.name;
-        app.email = res.email;
-        app.telepon = res.telepon;
-        app.level = res.level;
-        app.password = res.password;
-        app.nm_merchant = res.nm_merchant;
-        app.logo = res.logo;
-    }).catch(function (res) {});
-}));
+    //       created() {
+    //        let app = this;
+    //      this.id = this.$route.params.id;
+    //
+    //      this.$http.get(apiUrl() + '/user/' + this.id)
+    //          .then(function(res) {
+    //              res = res.data;
+    //              app.id = res.id;
+    //              app.name = res.name;
+    //              app.email = res.email;
+    //              app.telepon = res.telepon;
+    //          })
+    //          .catch(function(res) {
+    //
+    //          });
+    //      },
+});
 
 /***/ }),
 /* 120 */
@@ -18982,98 +18982,109 @@ var render = function() {
         _c("div", { staticClass: "col-md-12 col-sm-12" }, [
           _c("h2", { staticClass: "Profile" }, [_vm._v("Profil")]),
           _vm._v(" "),
-          _c(
-            "div",
-            {
-              staticClass: "profil",
-              scopedSlots: _vm._u([
+          _c("div", { staticClass: "profil" }, [
+            _c("input", {
+              directives: [
                 {
-                  key: "actions",
-                  fn: function(props) {
-                    return _c("div", {}, [
-                      _c(
-                        "button",
-                        {
-                          staticClass: "btn Button-Filter",
-                          on: {
-                            click: function($event) {
-                              _vm.editRow(props.rowData)
-                            }
-                          }
-                        },
-                        [
-                          _c("p", { staticClass: "Edit-Profile" }, [
-                            _vm._v("Edit Profil "),
-                            _c("img", {
-                              staticClass: "Write",
-                              attrs: { src: __webpack_require__(41) }
-                            })
-                          ])
-                        ]
-                      ),
-                      _vm._v(" "),
-                      _c("div", { staticClass: "pass" }, [
-                        _c("p", { staticClass: "Password" }, [
-                          _vm._v("Password")
-                        ]),
-                        _vm._v(" "),
-                        _c(
-                          "button",
-                          {
-                            staticClass: "btn Button-pass",
-                            on: {
-                              click: function($event) {
-                                _vm.editRow(props.rowData)
-                              }
-                            }
-                          },
-                          [
-                            _c("p", { staticClass: "Edit-Profile" }, [
-                              _vm._v("Edit Profil "),
-                              _c("img", {
-                                staticClass: "Write",
-                                attrs: { src: __webpack_require__(41) }
-                              })
-                            ])
-                          ]
-                        )
-                      ])
-                    ])
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.id,
+                  expression: "id"
+                }
+              ],
+              attrs: { type: "hidden" },
+              domProps: { value: _vm.id },
+              on: {
+                input: function($event) {
+                  if ($event.target.composing) {
+                    return
+                  }
+                  _vm.id = $event.target.value
+                }
+              }
+            }),
+            _vm._v(" "),
+            _c("p", { staticClass: "Patar-Hutabarat" }, [
+              _c("img", { attrs: { src: __webpack_require__(121) } }),
+              _vm._v("     " + _vm._s(_vm.$auth.user().name))
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "phone" }, [
+              _c("p", { staticClass: "Phone-Number" }, [
+                _vm._v("Phone Number")
+              ]),
+              _vm._v(" "),
+              _c("p", { staticClass: "layer" }, [
+                _vm._v(_vm._s(_vm.$auth.user().telepon))
+              ])
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "email" }, [
+              _c("p", { staticClass: "E-mail" }, [_vm._v("Email ")]),
+              _vm._v(" "),
+              _c("p", { staticClass: "patarhutabaratpvj" }, [
+                _vm._v(_vm._s(_vm.$auth.user().email))
+              ])
+            ]),
+            _vm._v(" "),
+            _c(
+              "button",
+              {
+                staticClass: "btn Button-Filter",
+                on: {
+                  click: function($event) {
+                    _vm.editRow(_vm.id)
                   }
                 }
-              ])
-            },
-            [
-              _c("p", { staticClass: "Patar-Hutabarat" }, [
-                _c("img", { attrs: { src: __webpack_require__(121) } }),
-                _vm._v("     " + _vm._s(_vm.$auth.user().name))
-              ]),
-              _vm._v(" "),
-              _c("div", { staticClass: "phone" }, [
-                _c("p", { staticClass: "Phone-Number" }, [
-                  _vm._v("Phone Number")
-                ]),
+              },
+              [_vm._m(0)]
+            ),
+            _vm._v(" "),
+            _c(
+              "div",
+              { staticClass: "pass" },
+              [
+                _c("p", { staticClass: "Password" }, [_vm._v("Password")]),
                 _vm._v(" "),
-                _c("p", { staticClass: "layer" }, [
-                  _vm._v(_vm._s(_vm.$auth.user().telepon))
-                ])
-              ]),
-              _vm._v(" "),
-              _c("div", { staticClass: "email" }, [
-                _c("p", { staticClass: "E-mail" }, [_vm._v("Email ")]),
-                _vm._v(" "),
-                _c("p", { staticClass: "patarhutabaratpvj" }, [
-                  _vm._v(_vm._s(_vm.$auth.user().email))
-                ])
-              ])
-            ]
-          )
+                _c(
+                  "router-link",
+                  {
+                    staticClass: "btn Button-pass",
+                    attrs: { to: { name: "edit.password" } }
+                  },
+                  [
+                    _c("p", { staticClass: "Change-Password" }, [
+                      _vm._v("Change Password"),
+                      _c("img", {
+                        staticClass: "Locked",
+                        attrs: { src: __webpack_require__(226) }
+                      })
+                    ])
+                  ]
+                )
+              ],
+              1
+            )
+          ])
         ])
       ])
     ])
   ])
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("p", { staticClass: "Edit-Profile" }, [
+      _vm._v("Edit Profil "),
+      _c("img", {
+        staticClass: "Write",
+        attrs: { src: __webpack_require__(41) }
+      })
+    ])
+  }
+]
 render._withStripped = true
 module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {
@@ -24971,6 +24982,35 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -25054,18 +25094,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         onChangePage: function onChangePage(page) {
             this.$refs.vuetable.changePage(page);
         },
-        showRow: function showRow(rowData) {
-            var id = rowData.id;
-            this.$router.push({ name: 'show.user', params: { id: id } });
-        },
-        editRow: function editRow(rowData) {
-            var id = rowData.id;
-            this.$router.push({ name: 'edit.user', params: { id: id } });
-        },
-        deleteRow: function deleteRow(rowData) {
-            this.deleteInfo = rowData;
-        },
-        deleteUser: function deleteUser() {
+        caridata: function caridata() {
             this.$http.delete(apiUrl() + '/user/' + this.deleteInfo.id).then(function (res) {
                 window.localStorage.setItem('success', JSON.stringify(['User telah dihapus']));
                 window.location.assign(window.location.href);
@@ -25090,6 +25119,8 @@ var render = function() {
           { staticClass: "col-lg-12" },
           [
             _c("h1", { staticClass: "page-header" }, [_vm._v("SMS Report")]),
+            _vm._v(" "),
+            _vm._m(0),
             _vm._v(" "),
             _vm._l(_vm.success, function(val) {
               return _c("div", { staticClass: "alert alert-success" }, [
@@ -25121,15 +25152,47 @@ var render = function() {
           ],
           2
         )
-      ])
-    ]),
-    _vm._v(" "),
-    _c(
+      ]),
+      _vm._v(" "),
+      _vm._m(1)
+    ])
+  ])
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "filter" }, [
+      _c(
+        "button",
+        {
+          staticClass: "Btn-Filter",
+          attrs: {
+            type: "button",
+            "data-toggle": "modal",
+            "data-target": "#caridata"
+          }
+        },
+        [
+          _c("p", { staticClass: "Filter-Search" }, [
+            _vm._v("Filter Search   "),
+            _c("i", { staticClass: "fa fa-sliders" })
+          ])
+        ]
+      )
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
       "div",
       {
         staticClass: "modal fade",
         attrs: {
-          id: "deleteModal",
+          id: "caridata",
           tabindex: "-1",
           role: "dialog",
           "aria-labelledby": "myModalLabel",
@@ -25139,27 +25202,114 @@ var render = function() {
       [
         _c(
           "div",
-          {
-            staticClass: "modal-dialog modal-danger",
-            attrs: { role: "document" }
-          },
+          { staticClass: "modal-dialog", attrs: { role: "document" } },
           [
             _c("div", { staticClass: "modal-content" }, [
-              _c("div", { staticClass: "modal-header" }, [
-                _c("h4", { staticClass: "modal-title" }, [
-                  _vm._v("Delete " + _vm._s(_vm.deleteInfo.name) + " ?")
-                ]),
+              _c("div", { staticClass: "modal-header text-left" }, [
+                _c(
+                  "h4",
+                  {
+                    staticClass: "modal-title w-100 font-weight-bold pull-left"
+                  },
+                  [_vm._v("Filter Search")]
+                ),
                 _vm._v(" "),
-                _vm._m(0)
+                _c(
+                  "button",
+                  {
+                    staticClass: "pull-right close",
+                    attrs: {
+                      type: "button",
+                      "data-dismiss": "modal",
+                      "aria-label": "Close"
+                    }
+                  },
+                  [
+                    _c("span", { attrs: { "aria-hidden": "true" } }, [
+                      _vm._v("×")
+                    ])
+                  ]
+                ),
+                _vm._v(" "),
+                _c("div", { staticClass: "clearfix" })
               ]),
               _vm._v(" "),
               _c("div", { staticClass: "modal-body" }, [
-                _c("p", [
-                  _vm._v(
-                    "Are you sure to delete : " +
-                      _vm._s(_vm.deleteInfo.name) +
-                      " ?"
-                  )
+                _c("div", { staticClass: "form" }, [
+                  _c("span", { staticClass: "lg-search" }, [
+                    _c("i", { staticClass: "fa fa-3x fa-mobile fa-hp" })
+                  ]),
+                  _vm._v(" "),
+                  _c(
+                    "div",
+                    { staticClass: "styled-input agile-styled-input-top" },
+                    [
+                      _c("input", {
+                        attrs: {
+                          type: "text",
+                          id: "MSISDN",
+                          name: "MSISDN",
+                          required: ""
+                        }
+                      }),
+                      _vm._v(" "),
+                      _c("label", [_vm._v("Receiver Number (MSISDN)")]),
+                      _vm._v(" "),
+                      _c("span")
+                    ]
+                  ),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "row no-gutters" }, [
+                    _c("div", { staticClass: "col-md-6" }, [
+                      _c("span", { staticClass: "lg1-search" }, [
+                        _c("i", {
+                          staticClass: "fa fa-2x fa-calendar-o fa-cal"
+                        })
+                      ]),
+                      _vm._v(" "),
+                      _c(
+                        "div",
+                        { staticClass: "styled-input agile-styled-input-top" },
+                        [
+                          _c("input", {
+                            staticClass: "datepicker",
+                            attrs: {
+                              type: "text",
+                              placeholder: "Start Date",
+                              id: "fromDate",
+                              required: ""
+                            }
+                          })
+                        ]
+                      )
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "col-md-6" }, [
+                      _c("span", { staticClass: "lg1-search" }, [
+                        _c("i", {
+                          staticClass: "fa fa-2x fa-calendar-o fa-cal"
+                        })
+                      ]),
+                      _vm._v(" "),
+                      _c(
+                        "div",
+                        { staticClass: "styled-input agile-styled-input-top" },
+                        [
+                          _c("input", {
+                            staticClass: "datepicker",
+                            attrs: {
+                              type: "text",
+                              placeholder: "End Date",
+                              id: "toDate",
+                              required: ""
+                            }
+                          })
+                        ]
+                      )
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "clearfix" })
+                  ])
                 ])
               ]),
               _vm._v(" "),
@@ -25167,50 +25317,25 @@ var render = function() {
                 _c(
                   "button",
                   {
-                    staticClass: "btn btn-primary",
-                    attrs: { type: "button", "data-dismiss": "modal" }
-                  },
-                  [_vm._v("Close")]
-                ),
-                _vm._v(" "),
-                _c(
-                  "button",
-                  {
-                    staticClass: "btn btn-danger",
-                    attrs: { type: "button" },
-                    on: {
-                      click: function($event) {
-                        $event.preventDefault()
-                        return _vm.deleteUser($event)
-                      }
+                    staticClass: "btn-filter",
+                    attrs: {
+                      onclick: "$('#caridata').modal('hide')",
+                      id: "searching"
                     }
                   },
-                  [_vm._v("Delete")]
+                  [
+                    _vm._v("Search "),
+                    _c("i", {
+                      staticClass: "glyphicon glyphicon-search",
+                      staticStyle: { "padding-left": "10px" }
+                    })
+                  ]
                 )
               ])
             ])
           ]
         )
       ]
-    )
-  ])
-}
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c(
-      "button",
-      {
-        staticClass: "close",
-        attrs: {
-          type: "button",
-          "data-dismiss": "modal",
-          "aria-label": "Close"
-        }
-      },
-      [_c("span", { attrs: { "aria-hidden": "true" } }, [_vm._v("×")])]
     )
   }
 ]
@@ -25276,6 +25401,7 @@ module.exports = Component.exports
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
 //
 //
 //
@@ -25404,6 +25530,27 @@ var render = function() {
             },
             [
               _c("div", { staticClass: "col-md-6 col-sm-6 edit" }, [
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.$auth.user().id,
+                      expression: "$auth.user().id"
+                    }
+                  ],
+                  attrs: { type: "hidden" },
+                  domProps: { value: _vm.$auth.user().id },
+                  on: {
+                    input: function($event) {
+                      if ($event.target.composing) {
+                        return
+                      }
+                      _vm.$set(_vm.$auth.user(), "id", $event.target.value)
+                    }
+                  }
+                }),
+                _vm._v(" "),
                 _c(
                   "div",
                   { staticClass: "styled-input agile-styled-input-top" },
@@ -25606,11 +25753,14 @@ var render = function() {
     _c("div", { staticClass: "container-fluid" }, [
       _c("div", { staticClass: "row head-page" }, [
         _c("div", { staticClass: "col-md-12 col-sm-12" }, [
-          _c("h2", { staticClass: "Profile" }, [_vm._v("Change Password")]),
+          _c("h2", { staticClass: "Ubah-Password" }, [
+            _vm._v("Change Password")
+          ]),
           _vm._v(" "),
           _c(
             "form",
             {
+              staticClass: "pas",
               on: {
                 submit: function($event) {
                   $event.preventDefault()
@@ -25619,101 +25769,103 @@ var render = function() {
               }
             },
             [
-              _c("div", { staticClass: "col-md-6 col-sm-6 edit" }, [
-                _c(
-                  "div",
-                  { staticClass: "styled-input agile-styled-input-top" },
-                  [
-                    _c("input", {
-                      directives: [
-                        {
-                          name: "model",
-                          rawName: "v-model",
-                          value: _vm.password,
-                          expression: "password"
-                        }
-                      ],
-                      attrs: { type: "password", name: "password" },
-                      domProps: { value: _vm.password },
-                      on: {
-                        input: function($event) {
-                          if ($event.target.composing) {
-                            return
+              _c("div", { staticClass: "col-md-6 col-sm-6" }, [
+                _c("div", { staticClass: "form-pass" }, [
+                  _c(
+                    "div",
+                    { staticClass: "styled-input agile-styled-input-top" },
+                    [
+                      _c("input", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.password,
+                            expression: "password"
                           }
-                          _vm.password = $event.target.value
-                        }
-                      }
-                    }),
-                    _vm._v(" "),
-                    _c("label", [_vm._v("Password")]),
-                    _vm._v(" "),
-                    _c("span")
-                  ]
-                ),
-                _vm._v(" "),
-                _c(
-                  "div",
-                  { staticClass: "styled-input agile-styled-input-top" },
-                  [
-                    _c("input", {
-                      directives: [
-                        {
-                          name: "model",
-                          rawName: "v-model",
-                          value: _vm.newpassword,
-                          expression: "newpassword"
-                        }
-                      ],
-                      attrs: { type: "password", name: "newpassword" },
-                      domProps: { value: _vm.newpassword },
-                      on: {
-                        input: function($event) {
-                          if ($event.target.composing) {
-                            return
+                        ],
+                        attrs: { type: "password", name: "password" },
+                        domProps: { value: _vm.password },
+                        on: {
+                          input: function($event) {
+                            if ($event.target.composing) {
+                              return
+                            }
+                            _vm.password = $event.target.value
                           }
-                          _vm.newpassword = $event.target.value
                         }
-                      }
-                    }),
-                    _vm._v(" "),
-                    _c("label", [_vm._v("New Password")]),
-                    _vm._v(" "),
-                    _c("span")
-                  ]
-                ),
-                _vm._v(" "),
-                _c(
-                  "div",
-                  { staticClass: "styled-input agile-styled-input-top" },
-                  [
-                    _c("input", {
-                      directives: [
-                        {
-                          name: "model",
-                          rawName: "v-model",
-                          value: _vm.confirmpassword,
-                          expression: "confirmpassword"
-                        }
-                      ],
-                      attrs: { type: "password", name: "confirmpassword" },
-                      domProps: { value: _vm.confirmpassword },
-                      on: {
-                        input: function($event) {
-                          if ($event.target.composing) {
-                            return
+                      }),
+                      _vm._v(" "),
+                      _c("label", [_vm._v("Password")]),
+                      _vm._v(" "),
+                      _c("span")
+                    ]
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "div",
+                    { staticClass: "styled-input agile-styled-input-top" },
+                    [
+                      _c("input", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.newpassword,
+                            expression: "newpassword"
                           }
-                          _vm.confirmpassword = $event.target.value
+                        ],
+                        attrs: { type: "password", name: "newpassword" },
+                        domProps: { value: _vm.newpassword },
+                        on: {
+                          input: function($event) {
+                            if ($event.target.composing) {
+                              return
+                            }
+                            _vm.newpassword = $event.target.value
+                          }
                         }
-                      }
-                    }),
-                    _vm._v(" "),
-                    _c("label", [_vm._v("Confirm Password")]),
-                    _vm._v(" "),
-                    _c("span")
-                  ]
-                ),
-                _vm._v(" "),
-                _vm._m(0)
+                      }),
+                      _vm._v(" "),
+                      _c("label", [_vm._v("New Password")]),
+                      _vm._v(" "),
+                      _c("span")
+                    ]
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "div",
+                    { staticClass: "styled-input agile-styled-input-top" },
+                    [
+                      _c("input", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.confirmpassword,
+                            expression: "confirmpassword"
+                          }
+                        ],
+                        attrs: { type: "password", name: "confirmpassword" },
+                        domProps: { value: _vm.confirmpassword },
+                        on: {
+                          input: function($event) {
+                            if ($event.target.composing) {
+                              return
+                            }
+                            _vm.confirmpassword = $event.target.value
+                          }
+                        }
+                      }),
+                      _vm._v(" "),
+                      _c("label", [_vm._v("Confirm Password")]),
+                      _vm._v(" "),
+                      _c("span")
+                    ]
+                  ),
+                  _vm._v(" "),
+                  _vm._m(0)
+                ])
               ])
             ]
           )
@@ -27290,6 +27442,12 @@ if (false) {
     require("vue-hot-reload-api")      .rerender("data-v-4be2077e", module.exports)
   }
 }
+
+/***/ }),
+/* 226 */
+/***/ (function(module, exports) {
+
+module.exports = "/fonts/Locked.svg?ba53720d93c9b35f113389627ffe3b79";
 
 /***/ })
 /******/ ]);
