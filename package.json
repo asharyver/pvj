@@ -22,10 +22,14 @@
         "vue-axios": "^2.1.1",
         "vue-router": "^3.0.1",
         "vue-session": "^1.0.0",
-        "vuetable-2": "^1.7.5"
+        "vuetable-2": "^1.7.5",
+        "eonasdan-bootstrap-datetimepicker": "^4.17.47",
+        "moment": "^2.22.2",
+        "vue-bootstrap-datetimepicker": "^4.1.4"
     },
     "dependencies": {
         "@websanova/vue-auth": "^2.21.12-beta",
-        "bootstrap-sass": "^3.3.7"
+        "bootstrap-sass": "^3.3.7",
+        "vue-events": "^3.1.0"
     }
 }

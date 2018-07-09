@@ -31,8 +31,21 @@ class SmsController extends Controller
 
         $data     = Sms::limit($limit)
             ->offset($offset)
-            ->orderBy($sort[0], $sort[1])
-            ->get();
+            ->orderBy($sort[0], $sort[1]);
+            
+        // Apply Filter
+        if ($msisdn = $request->input('msisdn')) {
+            $data->where('sdn', 'like', '%' . $msisdn. '%');
+            // $data->where('receiver', 'like', '%' . $msisdn. '%');
+        }
+        
+        if (! empty($startDate = $request->input('start-date')) && 
+            ! empty($endDate = $request->input('end-date'))) {
+            $data->whereBetween('received', [
+                date('Y-m-d H:i:s', strtotime($startDate)),
+                date('Y-m-d H:i:s', strtotime($endDate))
+            ]);
+        }
 
         return response()->json([
             'total'         => $total,
@@ -43,7 +56,7 @@ class SmsController extends Controller
             'prev_page_url' => ($page == 1) ? null : url()->current() . '?page=' . ($page - 1),
             'to'            => $to,
             'from'          => $from,
-            'data'          => $data
+            'data'          => $data->get()
         ]);
     }
 

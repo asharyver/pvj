@@ -16,3 +16,10 @@ mix.js('resources/assets/js/app.js', 'public/js')
 
 // Membuat versioning, agar tidak ter-cached oleh browser
 mix.version();
+
+// webpack.mix.js
+mix.autoload({
+    'jquery': ['$', 'window.jQuery', 'jQuery'],
+    'vue': ['Vue','window.Vue'],   
+    'moment': ['moment','window.moment'],   
+})
