@@ -55,14 +55,22 @@ export default [
             auth: true
         }
     },
-    // {
-    //     path: '/profil/edit/:id',
-    //     name: 'edit.profil',
-    //     component: require('./components/EditProfil'),
-    //     meta: {
-    //         auth: true
-    //     }
-    // },
+    {
+        path: '/profil/edit:id',
+        name: 'edit.profil',
+        component: require('./components/views/EditProfil'),
+        meta: {
+            auth: true
+        }
+    },
+    {
+        path: '/profil/password',
+        name: 'edit.password',
+        component: require('./components/views/EditPassword'),
+        meta: {
+            auth: true
+        }
+    },
     {
         path: '/404',
         name: '404',

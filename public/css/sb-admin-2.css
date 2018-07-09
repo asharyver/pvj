@@ -450,6 +450,7 @@ a {
   width: 67px;
   height: 26px;
   margin-top: 52px;
+  margin-left: 25px;
   font-family: SFProText;
   font-size: 22px;
   font-weight: normal;
@@ -536,9 +537,18 @@ a {
   margin-bottom: 39px;
 }
 .Button-Filter {
-  width: 155px;
+   width: 155px;
+   height: 42px;
+   border-radius: 5px;
+   background-color: #8a2785;
+   box-shadow: 0 0 30px 0 rgba(0, 0, 0, 0.2);
+ }
+.Button-Save {
+  width: 125px;
   height: 42px;
   border-radius: 5px;
+  margin-left: 66px;
+  margin-top: 11px;
   background-color: #8a2785;
   box-shadow: 0 0 30px 0 rgba(0, 0, 0, 0.2);
 }
@@ -560,6 +570,10 @@ a {
   line-height: normal;
   letter-spacing: normal;
   color: #ffffff;
+}
+.edit{
+  margin-top: 81px;
+  margin-left: -51px;
 }
 .Write {
   width: 28px;
@@ -599,6 +613,71 @@ a {
   height: 28px;
   margin-left: 20px;
   object-fit: contain;
+}
+
+styled-input.agile-styled-input-top{
+  margin-top: 0;
+}
+.styled-input {
+  float: right;
+  width: 85%;
+  margin: 2em 0 2em 1em;
+  position: relative;
+}
+.contact-form input[type="password"],
+.contact-form input[type="name"],
+.contact-form textarea {
+  font-size: 1.3em;
+  color: #26272b;
+  padding: 1.3em 1em .3em 0em;
+  border: 0;
+  width: 100%;
+  border-bottom: 1px solid #b9b9b9;
+  background: none;
+  -webkit-appearance: none;
+  outline: none;
+}
+.styled-input input:focus~label,
+.styled-input input:valid~label,
+.styled-input textarea:focus~label,
+.styled-input textarea:valid~label {
+  font-size: 1em;
+  color: #d3d4d6;
+  top: -2.5em;
+  -webkit-transition: all 0.125s;
+  -moz-transition: all 0.125s;
+  -o-transition: all 0.125s;
+  -ms-transition: all 0.125s;
+  transition: all 0.125s;
+}
+.styled-input label {
+  padding: 1.5em 0em;
+  position: absolute;
+  top: 0;
+  color: #ccc;
+  left: 0;
+  -webkit-transition: all 0.3s;
+  -moz-transition: all 0.3s;
+  transition: all 0.3s;
+  pointer-events: none;
+  font-weight: 600;
+  font-size: 1.2em;
+  display: block;
+  line-height: 1em;
+  letter-spacing: 2px;
+}
+.styled-input input~span,
+.styled-input textarea~span {
+  display: block;
+  width: 0;
+  height: 2px;
+  background: #8A2785;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  -webkit-transition: all 0.125s;
+  -moz-transition: all 0.125s;
+  transition: all 0.125s;
 }
 /*-------------------    // End Edit Profil     --------------------------*/
 

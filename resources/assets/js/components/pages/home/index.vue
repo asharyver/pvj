@@ -14,11 +14,15 @@
               <p class="E-mail">Email </p>
               <p class="patarhutabaratpvj">{{ $auth.user().email }}</p>
             </div>
-            <router-link v-bind:to=" { name: 'user' } " class="btn Button-Filter"><p class="Edit-Profile">Edit Profil <img src="../../img/write.svg" class="Write"></p></router-link>
-            <div class="pass">
-              <p class="Password">Password</p>
-              <btn class="btn Button-pass"><p class="Change-Password">Change Password<img src="../../img/Locked.svg" class="Locked"/></p></btn>
-            </div>
+              <div class="table-button-container" slot="actions" slot-scope="props">
+                <button class="btn Button-Filter" @click="editRow(props.rowData)"><p class="Edit-Profile">Edit Profil <img src="../../img/write.svg" class="Write"></p></button>
+                <!--<router-link v-bind:to=" { name: 'edit.profil' } " class="btn btn-default Button-Filter"><p class="Edit-Profile">Edit Profil <img src="../../img/write.svg" class="Write"></p></router-link>-->
+                <div class="pass">
+                  <p class="Password">Password</p>
+                  <button class="btn Button-pass" @click="editRow(props.rowData)"><p class="Edit-Profile">Edit Profil <img src="../../img/write.svg" class="Write"></p></button>
+                  <!--<router-link v-bind:to=" { name: 'edit.password' } " class="btn Button-pass"><p class="Change-Password">Change Password<img src="../../img/Locked.svg" class="Locked"/></p></router-link>-->
+                </div>
+              </div>
           </div>
         </div>
       </div>
@@ -41,6 +45,12 @@
             this.$auth.ready(function () {
                 console.log(this); // Will be proper context.
             });
+        },
+        methods: {
+            editRow(rowData) {
+                let id = rowData.id;
+                this.$router.push({name: 'edit.profil', params: {id}})
+            },
         }
 //            let app = this;
 //            this.id = this.$auth.params.id;

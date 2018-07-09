@@ -44,7 +44,6 @@
                             <div class="form-group">
                                 <router-link v-bind:to=" { name: 'user' } " class="btn btn-danger">Back</router-link>&nbsp;
                                 <button type="submit" class="btn btn-success"> Update</button>
-                                <!--<button class="btn btn-success" v-bind:disabled="loading == true">Update</button>-->
                             </div>
                         </div>
                     </form>
