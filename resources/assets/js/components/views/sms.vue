@@ -4,98 +4,107 @@
             <div class="row head-page">
                 <div class="col-lg-12">
                     <h1 class="page-header">SMS Report</h1>
-                    <div class="filter">
-                        <button class="Btn-Filter" type="button" data-toggle="modal" data-target="#caridata"><p class="Filter-Search">Filter Search   <i class="fa fa-sliders"></i></p></button>
+                    <div class="btn-sms pull-right">
+                        <button class="btn btn-filter" data-toggle="modal" data-target="#filterModal">Search Filter</button>
                     </div>
-                    <div class="alert alert-success" v-for="val in success">
-                        {{ val }}
-                    </div>
-                    <vuetable ref="vuetable"
-                              v-bind:api-url="APIUrl + '/sms'"
-                              v-bind:fields="fields"
-                              pagination-path=""
-                              v-bind:css="css.table"
-                              v-bind:sort-order="sortOrder"
-                              v-bind:multi-sort="true"
-                              v-bind:http-options = "options"
-                              @vuetable:pagination-data="onPaginationData">
-
-                    </vuetable>
-                    <vuetable-pagination ref="pagination"
-                                         :css="css.paginations"
-                                         @vuetable-pagination:change-page="onChangePage">
-                    </vuetable-pagination>
+                    <div class="clearfix"></div>
                 </div>
+
+                <div class="alert alert-success" v-for="val in success">
+                    {{ val }}
+                </div>
+                <vuetable ref="vuetable"
+                          v-bind:api-url="APIUrl + '/sms'"
+                          v-bind:fields="fields"
+                          pagination-path=""
+                          v-bind:css="css.table"
+                          v-bind:sort-order="sortOrder"
+                          v-bind:multi-sort="true"
+                          v-bind:http-options = "options"
+                          :append-params="moreParams"
+                          @vuetable:pagination-data="onPaginationData">
+
+                </vuetable>
+                <vuetable-pagination ref="pagination"
+                                     :css="css.paginations"
+                                     @vuetable-pagination:change-page="onChangePage">
+                </vuetable-pagination>
             </div>
-            <div class="modal fade" id="caridata" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-                <div class="modal-dialog" role="document">
-                    <div class="modal-content">
-                        <div class="modal-header text-left">
-                            <h4 class="modal-title w-100 font-weight-bold pull-left">Filter Search</h4>
-                            <button class="pull-right close" type="button" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
-                            <div class="clearfix"></div>
+        </div>
+    </div>
+    <!-- Modal -->
+    <div id="filterModal" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Search Filter</h4>
+                </div>
+                <div class="modal-body">
+                    <form v-on:submit="filter()">
+                        <div class="form-group">
+                            <!-- <label for="">Receiver Number (MSISDN)</label> -->
+                            <input type="text" class="form-control" v-model="msisdn" placeholder="Receiver Number (MSISDN)" @keyup.enter="doFilter">
                         </div>
-                        <div class="modal-body">
-                            <div class="form">
-                <span class="lg-search">
-                    <i class="fa fa-3x fa-mobile fa-hp"></i>
-                </span>
-                                <div class="styled-input agile-styled-input-top">
-                                    <input type="text" id="MSISDN" name="MSISDN" required="">
-                                    <label>Receiver Number (MSISDN)</label>
-                                    <span></span>
-                                </div>
-                                <div class="row no-gutters">
-                                    <div class="col-md-6">
-                    <span class="lg1-search">
-                    <i class="fa fa-2x fa-calendar-o fa-cal"></i>
-                    </span>
-                                        <div class="styled-input agile-styled-input-top">
-                                            <input type="text" placeholder="Start Date" id="fromDate" required="" class="datepicker">
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                    <span class="lg1-search">
-                    <i class="fa fa-2x fa-calendar-o fa-cal"></i>
-                    </span>
-                                        <div class="styled-input agile-styled-input-top">
-                                            <input type="text" placeholder="End Date" id="toDate" required="" class="datepicker">
-                                        </div>
-                                    </div>
-                                    <div class="clearfix"></div>
-                                </div>
+                        <div class="form-group">
+                            <!-- <label for="">Date range</label> -->
+                            <div class="col-md-6">
+                                <date-picker  @keyup.enter="doFilter" v-model="startDate" :config="config" placeholder="Start Date"></date-picker>
+                            </div>
+                            <div class="col-md-6">
+                                <date-picker  @keyup.enter="doFilter" v-model="endDate" :config="config" placeholder="End Date"></date-picker>
                             </div>
                         </div>
-                        <div class="modal-footer">
-                            <button class="btn-filter" onclick="$('#caridata').modal('hide')" id="searching">Search <i style="padding-left: 10px" class="glyphicon glyphicon-search"></i></button>
-                        </div>
-                    </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" @click="doFilter" class="btn btn-info pull-left">Search</button>
+                    <button type="button" class="btn btn-danger pull-right" data-dismiss="modal">Close</button>
+                    <div class="clearfix"></div>
                 </div>
             </div>
         </div>
-
+    </div>
     </div>
 </template>
 <script>
     import Vuetable from 'vuetable-2/src/components/Vuetable';
     import VuetablePagination from 'vuetable-2/src/components/VuetablePagination';
 
+    // Import this component
+    import DatePicker from 'vue-bootstrap-datetimepicker';
+    // Import date picker css
+    import 'eonasdan-bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.css';
+
     export default {
+        mounted() {
+            this.$events.$on('filter-set', eventData => this.onFilterSet(eventData))
+            this.$events.$on('filter-reset', e => this.onFilterReset())
+        },
         created() {
             this.success = JSON.parse(
                 window.localStorage.getItem('success')
             );
-
             window.localStorage.removeItem('success');
         },
         components: {
             Vuetable,
-            VuetablePagination
+            VuetablePagination,
+            DatePicker
         },
         data: function() {
             return {
+                date: new Date(),
+                config: {
+                    format: 'YYYY-MM-DD HH:mm',
+                    useCurrent: false,
+                    sideBySide: true
+                },
+                startDate: null,
+                endDate: null,
+                msisdn: null,
+
                 success: [],
                 deleteInfo: [],
                 options: {
@@ -163,7 +172,18 @@
             onChangePage (page) {
                 this.$refs.vuetable.changePage(page)
             },
-            caridata() {
+            showRow(rowData){
+                let id = rowData.id;
+                this.$router.push({name: 'show.user', params: {id}})
+            },
+            editRow(rowData) {
+                let id = rowData.id;
+                this.$router.push({name: 'edit.user', params: {id}})
+            },
+            deleteRow(rowData){
+                this.deleteInfo = rowData;
+            },
+            deleteUser() {
                 this.$http.delete(apiUrl() + '/user/' + this.deleteInfo.id)
                     .then(function(res){
                         window.localStorage.setItem('success', JSON.stringify([
@@ -172,8 +192,40 @@
                         window.location.assign(window.location.href);
                     })
                     .catch(function(res){
-
                     });
+            },
+            doFilter () {
+                this.$events.fire('filter-set', JSON.stringify({
+                    msisdn: this.msisdn,
+                    startDate: this.startDate,
+                    endDate: this.endDate
+                }))
+            },
+            resetFilter () {
+                this.msisdn = null  // clear the text in text input
+                this.startDate = null
+                this.endDate = null
+                this.$events.fire('filter-reset')
+            },
+            onFilterSet (str) {
+                let data = JSON.parse(str)
+                this.moreParams = {
+                    'msisdn': data.msisdn,
+                    'start-date': data.startDate,
+                    'end-date': data.endDate
+                }
+
+                let vm = this
+                Vue.nextTick( function() {
+                    vm.$refs.vuetable.refresh()
+                })
+            },
+            onFilterReset () {
+                this.moreParams = {}
+                let vm = this
+                Vue.nextTick( function() {
+                    vm.$refs.vuetable.refresh()
+                })
             }
         }
     }

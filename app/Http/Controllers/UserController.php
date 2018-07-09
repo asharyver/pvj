@@ -132,29 +132,17 @@ class UserController extends Controller
             'telepon' => 'bail|required',
             'email'    => 'bail|required|email'
         ]);
-
         if ($validator->fails()) {
             $errors = $validator->errors();
-
             return response()->json([
                 'errors' => $errors->all()
             ], JsonResponse::HTTP_UNPROCESSABLE_ENTITY);
         }
-
         $user = User::find($id);
-
         $user->name = $request->input('name');
         $user->email = $request->input('email');
         $user->telepon = $request->input('telepon');
-        $user->level = $request->input('level');
-        $user->nm_merchant = $request->input('nm_merchant');
-        $user->logo = $request->input('logo');
-        if(!empty($request->input('password'))){
-            $user->password = bcrypt($request->input('password'));
-        }
-
         $user->save();
-
         return response()->json([
             'success' => true
         ]);

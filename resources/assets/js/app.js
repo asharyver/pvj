@@ -1,10 +1,14 @@
 // The Vue build version to load with the `import` command
 // (runtime-only or standalone) has been set in webpack.base.conf with an alias.
+window.$ = window.jQuery = require('jquery')
+require('bootstrap-sass/assets/javascripts/bootstrap')
+
 import Vue from 'vue'
 import VueRouter from 'vue-router';
 import VueSession from 'vue-session'
 import VueAxios from 'vue-axios'
 import Axios from 'axios'
+import VueEvents from 'vue-events'
 /*
 * Import VueJS Template
 */
@@ -71,6 +75,7 @@ Axios.defaults.baseURL = baseUrl() + '/api/'
 Vue.use(VueRouter)
 Vue.use(VueAxios, Axios)
 Vue.use(VueSession)
+Vue.use(VueEvents)
 
 Vue.use(require('@websanova/vue-auth'), {
     auth: require('@websanova/vue-auth/drivers/auth/bearer.js'),
@@ -79,4 +84,3 @@ Vue.use(require('@websanova/vue-auth'), {
 });
 
 new Vue(App).$mount('#app')
-

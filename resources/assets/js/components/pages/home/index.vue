@@ -48,26 +48,26 @@
             });
         },
         methods: {
-            editRow() {
-                let id = id;
+            editRow(rowData) {
+                let id = rowData.id;
                 this.$router.push({name: 'edit.profil', params: {id}})
             },
         },
-//       created() {
-//        let app = this;
-//      this.id = this.$route.params.id;
-//
-//      this.$http.get(apiUrl() + '/user/' + this.id)
-//          .then(function(res) {
-//              res = res.data;
-//              app.id = res.id;
-//              app.name = res.name;
-//              app.email = res.email;
-//              app.telepon = res.telepon;
-//          })
-//          .catch(function(res) {
-//
-//          });
-//      },
+        created() {
+            let app = this;
+            this.id = this.$auth.user().id;
+
+            this.$http.get(apiUrl() + '/user/' + this.id)
+                .then(function(res) {
+                    res = res.data;
+                    app.name = res.name;
+                    app.email = res.email;
+                    app.telepon = res.telepon;
+                    app.level = res.level;
+                    app.password = res.password;
+                })
+                .catch(function(res) {
+                });
+        },
     }
 </script>

@@ -22,7 +22,7 @@ export default {
 <template>
     <ul class="nav navbar-top-links navbar-right">
         <dropdown>
-            <li><a href="#"><i class="fa fa-user-circle-o fa-fw"></i> User Profile</a></li>
+            <li><router-link v-bind:to="{name: 'edit.profil'}"><i class="fa fa-user-circle-o fa-fw"></i> User Profile</router-link></li>
             <li class="divider"></li>
             <li><a href="#"><i class="fa fa-sign-out fa-fw"></i> Logout</a></li>
         </dropdown>
