@@ -3,14 +3,6 @@
         <div class="container-fluid">
             <div class="row head-page">
                 <div class="col-lg-12">
-<<<<<<< HEAD
-                    <h1 class="page-header">SMS Report</h1>
-                    <div class="btn-sms pull-right">
-                        <button class="btn btn-filter" data-toggle="modal" data-target="#filterModal">Search Filter</button>
-                    </div>
-                    <div class="clearfix"></div>
-                </div>
-=======
                     <div class="page-header">
                         <h1>SMS Report</h1>
                         <div class="btn-sms pull-right">
@@ -19,7 +11,6 @@
                         </div>
                         <div class="clearfix"></div>
                     </div>
-
                     <div class="alert alert-success" v-for="val in success">
                         {{ val }}
                     </div>
@@ -33,62 +24,14 @@
                               v-bind:http-options = "options"
                               :append-params="moreParams"
                               @vuetable:pagination-data="onPaginationData">
->>>>>>> 94e7ad8505e6713db335ab6523af234f5a4f4980
 
-                <div class="alert alert-success" v-for="val in success">
-                    {{ val }}
-                </div>
-                <vuetable ref="vuetable"
-                          v-bind:api-url="APIUrl + '/sms'"
-                          v-bind:fields="fields"
-                          pagination-path=""
-                          v-bind:css="css.table"
-                          v-bind:sort-order="sortOrder"
-                          v-bind:multi-sort="true"
-                          v-bind:http-options = "options"
-                          :append-params="moreParams"
-                          @vuetable:pagination-data="onPaginationData">
-
-                </vuetable>
-                <vuetable-pagination ref="pagination"
-                                     :css="css.paginations"
-                                     @vuetable-pagination:change-page="onChangePage">
-                </vuetable-pagination>
+                    </vuetable>
+                    <vuetable-pagination ref="pagination"
+                                         :css="css.paginations"
+                                         @vuetable-pagination:change-page="onChangePage">
+                    </vuetable-pagination>
             </div>
         </div>
-<<<<<<< HEAD
-    </div>
-    <!-- Modal -->
-    <div id="filterModal" class="modal fade" role="dialog">
-        <div class="modal-dialog">
-            <!-- Modal content-->
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal">&times;</button>
-                    <h4 class="modal-title">Search Filter</h4>
-                </div>
-                <div class="modal-body">
-                    <form v-on:submit="filter()">
-                        <div class="form-group">
-                            <!-- <label for="">Receiver Number (MSISDN)</label> -->
-                            <input type="text" class="form-control" v-model="msisdn" placeholder="Receiver Number (MSISDN)" @keyup.enter="doFilter">
-                        </div>
-                        <div class="form-group">
-                            <!-- <label for="">Date range</label> -->
-                            <div class="col-md-6">
-                                <date-picker  @keyup.enter="doFilter" v-model="startDate" :config="config" placeholder="Start Date"></date-picker>
-                            </div>
-                            <div class="col-md-6">
-                                <date-picker  @keyup.enter="doFilter" v-model="endDate" :config="config" placeholder="End Date"></date-picker>
-                            </div>
-                        </div>
-                    </form>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" @click="doFilter" class="btn btn-info pull-left">Search</button>
-                    <button type="button" class="btn btn-danger pull-right" data-dismiss="modal">Close</button>
-                    <div class="clearfix"></div>
-=======
         <!-- Modal -->
         <div id="filterModal" class="modal fade" role="dialog">
             <div class="modal-dialog">
@@ -102,15 +45,15 @@
                         <form v-on:submit="filter()">
                             <div class="form-group">
                                 <!-- <label for="">Receiver Number (MSISDN)</label> -->
-                                <input type="text" class="form-control" v-model="msisdn" placeholder="Receiver Number (MSISDN)" @keyup.enter="doFilter">
+                                <input type="text" class="form-control" v-model="msisdn" placeholder="Receiver Number (MSISDN)">
                             </div>
                             <div class="form-group">
                                 <!-- <label for="">Date range</label> -->
                                 <div class="col-md-6">
-                                    <date-picker  @keyup.enter="doFilter" v-model="startDate" :config="config" placeholder="Start Date"></date-picker>
+                                    <date-picker v-model="startDate" :config="config" placeholder="Start Date"></date-picker>
                                 </div>
                                 <div class="col-md-6">
-                                    <date-picker  @keyup.enter="doFilter" v-model="endDate" :config="config" placeholder="End Date"></date-picker>
+                                    <date-picker v-model="endDate" :config="config" placeholder="End Date"></date-picker>
                                 </div>
                             </div>
                         </form>
@@ -120,7 +63,7 @@
                         <button type="button" class="btn btn-danger pull-right" data-dismiss="modal">Close</button>
                         <div class="clearfix"></div>
                     </div>
->>>>>>> 94e7ad8505e6713db335ab6523af234f5a4f4980
+
                 </div>
             </div>
         </div>
@@ -134,17 +77,9 @@
     // Import this component
     import DatePicker from 'vue-bootstrap-datetimepicker';
 
-<<<<<<< HEAD
-    // Import this component
-    import DatePicker from 'vue-bootstrap-datetimepicker';
-    // Import date picker css
-    import 'eonasdan-bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.css';
-
-=======
     // Import date picker css
     import 'eonasdan-bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.css';
     
->>>>>>> 94e7ad8505e6713db335ab6523af234f5a4f4980
     export default {
         mounted() {
             this.$events.$on('filter-set', eventData => this.onFilterSet(eventData))
@@ -172,11 +107,6 @@
                 startDate: null,
                 endDate: null,
                 msisdn: null,
-<<<<<<< HEAD
-
-=======
-                
->>>>>>> 94e7ad8505e6713db335ab6523af234f5a4f4980
                 success: [],
                 deleteInfo: [],
                 options: {
@@ -286,11 +216,7 @@
                     'start-date': data.startDate,
                     'end-date': data.endDate
                 }
-<<<<<<< HEAD
 
-=======
-                
->>>>>>> 94e7ad8505e6713db335ab6523af234f5a4f4980
                 let vm = this
                 Vue.nextTick( function() {
                     vm.$refs.vuetable.refresh()

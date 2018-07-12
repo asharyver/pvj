@@ -17,6 +17,9 @@
                   <div class="alert alert-danger" v-if="errors" v-for="error in errors">
                     <p>{{ error }}</p>
                   </div>
+                  <div class="alert alert-success" v-if="success" v-for="suc in success">
+                    <p>{{ suc }}</p>
+                  </div>
                   <fieldset>
                     <div class="form">
                       <span class="lg">
@@ -57,11 +60,19 @@
 <script>
   export default {
       name: 'login',
+      mounted() {
+        let success = window.localStorage.getItem('success')
+        if (success) {
+          this.success.push(success)
+        }
+        window.localStorage.removeItem('success')
+      },
       data() {
           return {
               telepon: null,
               password: null,
-              errors: []
+              errors: [],
+              success: []
           }
       },
 
